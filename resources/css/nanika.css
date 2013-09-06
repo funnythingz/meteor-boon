@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+body {
+  background-color: #123;
+  color: #f7f8f9;
+  font-size: 16px;
+}
+
+.get-comment-wrap {
+  margin: 0 .5em 1em;
+}
+
+.get-comment {
+  box-sizing: border-box;
+  padding: .5em;
+  font-size: 16px;
+  width: 100%;
+  background-color: #c7c8c9;
+}
+
+.post-button-wrap {
+  margin: 0 .5em 1em;
+  text-align: right;
+}
+
+.post-button {
+  border: solid 1px #f7f8f9;
+  background-color: #345;
+  padding: .5em 1em;
+  vertical-align: bottom;
+  font-size: 16px;
+  color: #f7f8f9;
+  box-shadow: -2px -2px 0px #012 inset;
+}
