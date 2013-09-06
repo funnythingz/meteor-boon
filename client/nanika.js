@@ -6,6 +6,7 @@ if (Meteor.isClient) {
   Template.body.events({
     'click input' : function () {
       // template data, if any, is available in 'this'
+      console.log('hey!');
     }
   });
 }
