@@ -1,7 +1,7 @@
 if (Meteor.isClient) {
 
   Template.body.greeting = function () {
-    return "なにかをつくっているお";
+    return "Making of the";
   };
 
 }
