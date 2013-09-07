@@ -6,10 +6,6 @@ if (Meteor.isClient) {
     resetRender();
   });
 
-  Template.body.greeting = function () {
-    return "なにかをつくっているお";
-  };
-
   Template.body.events({
     'keypress .get-comment' : function (event) {
       if(isEnter(event.keyCode)) {
