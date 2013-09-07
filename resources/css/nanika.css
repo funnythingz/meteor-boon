@@ -46,11 +46,12 @@ body {
 .less {}
 .like, .bad {
   cursor: pointer;
+  display: inline-block;
 }
 .like {
   font-size: 10px;
-  text-align: right;
   margin-bottom: .5em;
+  margin-right: 1em;
 }
 .bad {
   font-size: 10px;
