@@ -32,3 +32,7 @@ body {
   color: #f7f8f9;
   box-shadow: -2px -2px 0px #012 inset;
 }
+.post-button.disabled {
+  color: #789;
+  box-shadow: none;
+}
