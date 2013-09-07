@@ -59,8 +59,8 @@ if (Meteor.isClient) {
     var $bad = $('<div class="bad">');
 
     $less.html(_.escape(comment));
-    $like.html('(^q^)b');
-    $bad.html('p(-q-)');
+    $like.html('(^q^)b < 0');
+    $bad.html('p(-q-) < 0');
 
     $action.append($like, $bad);
     $nanika.append($less, $action);

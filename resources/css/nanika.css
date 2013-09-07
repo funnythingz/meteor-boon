@@ -4,10 +4,14 @@ body {
   background-color: #123;
   color: #f7f8f9;
   font-size: 16px;
+  font-family:
+    Helvetica,Arial,Sans-Serif,
+    "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",
+    "ＭＳ Ｐゴシック","MS PGothic";
 }
 
-.stream-name {
-  margin-bottom: .5em;
+h1 {
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .get-comment-wrap {
@@ -43,7 +47,7 @@ body {
 }
 
 .comment-list {
-  margin: 0;
+  margin: .5em 0 0;
   padding-left: 1em;
 }
 
