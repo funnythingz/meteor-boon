@@ -58,7 +58,7 @@ if (Meteor.isClient) {
     var $like = $('<div class="like">');
     var $bad = $('<div class="bad">');
 
-    $less.html(comment);
+    $less.html(_.escape(comment));
     $like.html('(^q^)b');
     $bad.html('p(-q-)');
 
