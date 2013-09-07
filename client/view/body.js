@@ -44,7 +44,15 @@ if (Meteor.isClient) {
 
   var createComment = function(comment) {
     var $nanika = $('<li class="nanika">');
-    $nanika.html(comment);
+    var $less = $('<div class="less">');
+    var $like = $('<div class="like">');
+    var $bad = $('<div class="bad">');
+
+    $less.html(comment);
+    $like.html('(^q^)b');
+    $bad.html('p(-q-)');
+
+    $nanika.append($less, $like, $bad);
     return $nanika;
   }
 
