@@ -5,13 +5,10 @@ body {
   color: #f7f8f9;
   font-size: 16px;
   font-family:
+   'Josefin Sans',
     Helvetica,Arial,Sans-Serif,
     "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",
     "ＭＳ Ｐゴシック","MS PGothic";
-}
-
-h1 {
-  font-family: 'Josefin Sans', sans-serif;
 }
 
 .get-comment-wrap {
