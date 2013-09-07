@@ -11,8 +11,13 @@ if (Meteor.isClient) {
   };
 
   Template.body.events({
+    'keypress .get-comment' : function (event) {
+      if(isEnter(event.keyCode)) {
+        inputClear();
+      }
+    },
     'focus .get-comment' : function () {
-      timer = setInterval(checkPressButton, 300);
+      timer = setInterval(checkCommentAction, 300);
     },
 
     'blur .get-comment' : function () {
@@ -20,20 +25,24 @@ if (Meteor.isClient) {
     },
 
     'click .post-button' : function () {
-      if(isComment()) {
-        $('#comment').append(
-          createComment($('.get-comment').val())
-        );
-        resetRender();
-      }
+      inputClear();
     }
   });
 
-  var checkPressButton = function() {
+  var checkCommentAction = function() {
     if(isComment()) {
       okPostButton();
     } else {
       disabledPostButton();
+    }
+  }
+
+  var inputClear = function() {
+    if(isComment()) {
+      $('#comment').append(
+        createNanika($('.get-comment').val())
+      );
+      resetRender();
     }
   }
 
@@ -42,9 +51,10 @@ if (Meteor.isClient) {
     disabledPostButton();
   }
 
-  var createComment = function(comment) {
+  var createNanika = function(comment) {
     var $nanika = $('<li class="nanika">');
     var $less = $('<div class="less">');
+    var $action = $('<div class="action">');
     var $like = $('<div class="like">');
     var $bad = $('<div class="bad">');
 
@@ -52,8 +62,16 @@ if (Meteor.isClient) {
     $like.html('(^q^)b');
     $bad.html('p(-q-)');
 
-    $nanika.append($less, $like, $bad);
+    $action.append($like, $bad);
+    $nanika.append($less, $action);
     return $nanika;
+  }
+
+  var isEnter = function(keyCode) {
+    if(_.isEqual(keyCode, 13)) {
+      return true;
+    }
+    return false;
   }
 
   var isComment = function() {
