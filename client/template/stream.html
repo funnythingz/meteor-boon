@@ -1,10 +1,10 @@
 <template name="stream">
-  <article>
+  <article class="stream">
     <fieldset>
       <legend class="stream-name">Stream</legend>
-      <section class="stream-main" id="streamMain">
-        {{#each messages}}
-          {{> message}}
+      <section class="entries" id="streamMain">
+        {{#each entries}}
+          {{> entry}}
         {{/each}}
       </section>
     </fieldset>

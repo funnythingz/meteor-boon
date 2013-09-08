@@ -1,7 +1,7 @@
 if (Meteor.isClient) {
 
-  Template.stream.messages = function() {
-    return MessagesController.findMessages();
+  Template.stream.entries = function() {
+    return MessagesController.findEntry();
   }
 
 }

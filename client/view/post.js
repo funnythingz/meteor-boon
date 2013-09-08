@@ -35,7 +35,7 @@ if (Meteor.isClient) {
 
   var postMessage = function() {
     if(isComment()) {
-      MessagesController.postMessage($('.get-comment').val());
+      MessagesController.createEntry($('.get-comment').val());
       resetRender();
     }
   }
