@@ -9,5 +9,12 @@ MessagesController = {
                    text: _.escape(comment),
                    created_at: (new Date()).getTime()
                  });
-               }
+                 console.log('posted');
+               },
+
+  removeMessage: function(_id) {
+                   Messages.remove(_id);
+                   console.log('removed');
+                 }
+
 };
