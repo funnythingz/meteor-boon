@@ -6,7 +6,7 @@ MessagesController = {
 
   postMessage: function(comment) {
                  Messages.insert({
-                   text: _.escape(comment),
+                   text: comment,
                    created_at: (new Date()).getTime()
                  });
                  console.log('posted');
@@ -15,6 +15,6 @@ MessagesController = {
   removeMessage: function(_id) {
                    Messages.remove(_id);
                    console.log('removed');
-                 }
+                 },
 
 };
