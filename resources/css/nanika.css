@@ -48,27 +48,31 @@ body {
   padding-left: 1em;
 }
 
-.nanika {
+.nanika-item {
   margin-bottom: .5em;
 }
-.nanika:last-child {
+.nanika-item:last-child {
   margin-bottom: 0;
 }
 
-.less {}
+.less {
+}
 .action {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   text-align: right;
 }
-.like, .bad {
+.action li {
   cursor: pointer;
   display: inline-block;
 }
+.like, .bad {
+}
 .like {
-  font-size: 10px;
   margin-bottom: .5em;
   margin-right: 1em;
 }
 .bad {
-  font-size: 10px;
   text-align: right;
 }

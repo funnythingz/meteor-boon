@@ -6,10 +6,10 @@ if (Meteor.isClient) {
     resetRender();
   });
 
-  Template.body.events({
+  Template.post.events({
     'keypress .get-comment' : function (event) {
       if(isEnter(event.keyCode)) {
-        inputClear();
+        postMessage();
       }
     },
     'focus .get-comment' : function () {
@@ -21,7 +21,7 @@ if (Meteor.isClient) {
     },
 
     'click .post-button' : function () {
-      inputClear();
+      postMessage();
     }
   });
 
@@ -33,11 +33,9 @@ if (Meteor.isClient) {
     }
   }
 
-  var inputClear = function() {
+  var postMessage = function() {
     if(isComment()) {
-      $('#comment').append(
-        createNanika($('.get-comment').val())
-      );
+      MessagesController.postMessage($('.get-comment').val());
       resetRender();
     }
   }
@@ -45,22 +43,6 @@ if (Meteor.isClient) {
   var resetRender = function() {
     $('.get-comment').val('');
     disabledPostButton();
-  }
-
-  var createNanika = function(comment) {
-    var $nanika = $('<li class="nanika">');
-    var $less = $('<div class="less">');
-    var $action = $('<div class="action">');
-    var $like = $('<div class="like">');
-    var $bad = $('<div class="bad">');
-
-    $less.html(_.escape(comment));
-    $like.html('(^q^)b < 0');
-    $bad.html('p(-q-) < 0');
-
-    $action.append($like, $bad);
-    $nanika.append($less, $action);
-    return $nanika;
   }
 
   var isEnter = function(keyCode) {

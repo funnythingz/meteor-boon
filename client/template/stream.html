@@ -1,0 +1,14 @@
+<template name="stream">
+
+  <article>
+    <fieldset>
+      <legend class="stream-name">Stream</legend>
+      <section class="stream-main" id="streamMain">
+        {{#each messages}}
+          {{> message}}
+        {{/each}}
+      </section>
+    </fieldset>
+  </article>
+
+</template>
