@@ -30,6 +30,7 @@ body {
 
 .post-button {
   border: solid 1px #f7f8f9;
+  border-radius: 0;
   background-color: #345;
   padding: .5em 1em;
   vertical-align: bottom;
@@ -45,6 +46,7 @@ body {
 
 .message {
   margin: 0 0 1em;
+  word-break: break-all;
 }
 
 .cassette {
