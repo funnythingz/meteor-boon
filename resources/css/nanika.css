@@ -79,7 +79,12 @@ body {
 }
 .like {
   margin-bottom: .5em;
+  color: #0f0;
 }
 .bad {
   text-align: right;
+  color: #f00;
+}
+.remove {
+  color: #a7a8a9;
 }

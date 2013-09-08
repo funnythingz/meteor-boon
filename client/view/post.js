@@ -35,7 +35,7 @@ if (Meteor.isClient) {
 
   var postMessage = function() {
     if(isComment()) {
-      MessagesController.createEntry($('.get-comment').val());
+      EntryController.createEntry($('.get-comment').val());
       resetRender();
     }
   }
@@ -63,6 +63,7 @@ if (Meteor.isClient) {
     var postButton = $('.post-button');
     if(postButton.hasClass('disabled')) {
       postButton.removeClass('disabled');
+      postButton.removeAttr('disabled');
     }
   }
 
@@ -70,6 +71,7 @@ if (Meteor.isClient) {
     var postButton = $('.post-button');
     if(!postButton.hasClass('disabled')) {
       postButton.addClass('disabled');
+      postButton.attr('disabled', 'disabled');
     }
   }
 
