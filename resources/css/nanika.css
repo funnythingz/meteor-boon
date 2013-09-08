@@ -43,16 +43,18 @@ body {
   box-shadow: none;
 }
 
-.comment-list {
-  margin: .5em 0 0;
-  padding-left: 1em;
+.message {
+  margin: 0 0 1em;
 }
 
-.nanika-item {
-  margin-bottom: .5em;
+.cassette {
+  padding-bottom: .5em;
+  margin-bottom: 1em;
+  border-bottom: solid 1px #c7c8c9;
 }
-.nanika-item:last-child {
+.cassette:last-child {
   margin-bottom: 0;
+  border-bottom: 0 none;
 }
 
 .less {
@@ -66,12 +68,15 @@ body {
 .action li {
   cursor: pointer;
   display: inline-block;
+  margin-right: 1em;
+}
+.action li:last-child {
+  margin-right: 0;
 }
 .like, .bad {
 }
 .like {
   margin-bottom: .5em;
-  margin-right: 1em;
 }
 .bad {
   text-align: right;

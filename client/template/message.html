@@ -1,5 +1,6 @@
 <template name="message">
-  <article id="{{_id}}" class="nanika-item">
+  <article id="{{_id}}" class="cassette">
+    {{> removeAction}}
     <p class="message">{{text}}</p>
     {{> action}}
   </article>

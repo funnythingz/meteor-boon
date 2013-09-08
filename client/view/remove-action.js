@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
 
-  Template.action.events({
+  Template.removeAction.events({
     'click .remove' : function (event) {
       MessagesController.removeMessage(this._id);
     },
