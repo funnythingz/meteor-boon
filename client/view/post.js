@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
-  
-  var timer;
+
+  var commentTimer;
 
   Meteor.startup(function () {
     resetRender();
@@ -13,11 +13,11 @@ if (Meteor.isClient) {
       }
     },
     'focus .get-comment' : function () {
-      timer = setInterval(checkCommentAction, 300);
+      commentTimer = Meteor.setInterval(checkCommentAction, 300);
     },
 
     'blur .get-comment' : function () {
-      clearInterval(timer);
+      Meteor.clearInterval(commentTimer);
     },
 
     'click .post-button' : function () {
