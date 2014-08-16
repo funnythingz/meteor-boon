@@ -1,17 +1,15 @@
 <head>
   <title>meteor-nanika</title>
-  <link rel="stylesheet" href="//bootswatch.com/cerulean/bootstrap.min.css">
-  <!--link rel="stylesheet" href="//bootswatch.com/assets/css/bootswatch.min.css"-->
+  <link rel="stylesheet" href="//bootswatch.com/lumen/bootstrap.min.css">
+  <link rel="stylesheet" href="//bootswatch.com/assets/css/bootswatch.min.css">
   <link rel="stylesheet" href="//eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker3.css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="//eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
   <script src="//eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/locales/bootstrap-datepicker.ja.js"></script>
 </head>
 
-<body></body>
-
 <template name="layout">
-  <div class="navbar navbar-default">
+  <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="{{pathFor 'home'}}">nanika</a>
@@ -27,7 +25,7 @@
     </div>
   </div>
 
-  {{yield}}
+  {{> yield}}
 
   <div class="container">
     <p class="text-center">&copy; <a href="http://www.funnythingz.com">funnythingz</a></p>
