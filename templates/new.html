@@ -94,6 +94,8 @@
   </div>
 
   <script>
+  var Helper;!function(a){function b(a){return a.getFullYear()+"."+a.getMonth()+"."+a.getDate()}a.createDate=b}(Helper||(Helper={}));var DatePickerApp=function(){function a(){this.$selectDate=$("#select-date"),this.$datePicker=$("#date-picker"),this.ready()}return a.prototype.ready=function(){var a=this,b={language:"ja",todayHighlight:!0,format:"dd/mm/yyyy"};this.$datePicker.datepicker(b).on("changeDate",function(b){return a.updateDate(b)})},a.prototype.updateDate=function(a){if(_.isUndefined(a.date))this.$selectDate.val("");else{var b=Helper.createDate(new Date(a.date));this.$selectDate.val(b)}},a}();
+
   $(function() {
       new DatePickerApp();
   });
