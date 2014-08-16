@@ -1,0 +1,33 @@
+<head>
+  <title>meteor-nanika</title>
+  <link href="//eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+  <script src="//eternicode.github.io/bootstrap-datepicker/bootstrap-datepicker/js/locales/bootstrap-datepicker.ja.js"></script>
+</head>
+
+<body></body>
+
+<template name="layout">
+  <div class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{pathFor 'home'}}">nanika</a>
+      </div>
+      <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="{{pathFor 'new'}}">日程をえらブーン</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{{pathFor 'about'}}">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {{yield}}
+
+  <div class="container">
+    <p class="text-center">&copy; <a href="http://www.funnythingz.com">funnythingz</a></p>
+  </div>
+</template>
