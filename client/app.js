@@ -62,6 +62,13 @@ Router.map(function() {
 
 });
 
+Template.show.events({
+  'click #delete': function() {
+    BoonsCollection.remove($('#delete').data('id'));
+    location.href = '/list';
+  }
+});
+
 var RequiredChecker = function() {
 
   this.required = false;
@@ -139,7 +146,6 @@ Template.new.events({
         createAt: (new Date()).getTime()
       });
 
-      location.href = '/list';
     }
 
   }
