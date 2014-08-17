@@ -54,19 +54,34 @@ Router.map(function() {
     path: '/boons/:_id',
     layoutTemplate: 'layout',
     template: 'show',
+    onBeforeAction: function() {
+      if(_.isUndefined(BoonsCollection.findOne(this.params._id))) {
+        Router.go('home');
+      }
+    },
     data: function() {
-      var _result = BoonsCollection.findOne(this.params._id);
-      return _result;
+      var showViewModel = {
+        thisUrl: location.href,
+        result: BoonsCollection.findOne(this.params._id)
+      }
+
+      return showViewModel;
     }
   });
 
 });
 
 Template.show.events({
+
   'click #delete': function() {
     BoonsCollection.remove($('#delete').data('id'));
     Router.go('list');
+  },
+
+  'click #copyTargetUrl': function() {
+    $('#copyTargetUrl').select();
   }
+
 });
 
 var RequiredChecker = function() {
