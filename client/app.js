@@ -1,5 +1,3 @@
-var Boons = new Meteor.Collection("boons");
-
 var createTimeOptions = function() {
 
   var _timeOptions = [];
@@ -42,12 +40,25 @@ Router.map(function() {
     }
   });
 
+  this.route('list', {
+    path: '/list',
+    layoutTemplate: 'layout',
+    template: 'list',
+    data: function() {
+      var _result = BoonsCollection.find({}, {sort: {created_at: -1}});
+      console.log(_result);
+      return _result;
+    }
+  });
+
   this.route('show', {
     path: '/boons/:_id',
     layoutTemplate: 'layout',
     template: 'show',
     data: function() {
-      return Posts.findOne(this.params._id);
+      var _result = BoonsCollection.findOne(this.params._id);
+      console.log(_result);
+      return _result;
     }
   });
 
@@ -119,13 +130,18 @@ Template.new.events({
     }
 
     if(inputTitleRequiredChecker.isRequired() && selectDateRequiredChecker.isRequired()) {
-      console.log($inputEventTitle.val());
-      console.log($inputEventTime.val());
-      console.log($infoArea.val());
-      console.log($selectDate.val());
-      console.log($selectStartTime.val());
-      console.log($selectEndTime.val());
-      console.log((new Date()).getTime());
+
+      BoonsCollection.insert({
+        eventTitle: $inputEventTitle.val(),
+        eventTime: $inputEventTime.val(),
+        eventInfo: $infoArea.val(),
+        selectDate: $selectDate.val(),
+        selectStartTime: $selectStartTime.val(),
+        selectEndTime: $selectEndTime.val(),
+        createAt: (new Date()).getTime()
+      });
+
+      console.log('completed');
     }
 
   }
