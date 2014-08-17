@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         {{#each .}}
-        <td>{{_id}}</td>
+        <td><a href="{{pathFor 'show'}}">{{_id}}</a></td>
         <td>{{eventTitle}}</td>
         <td>{{eventTime}}</td>
         <td>{{eventInfo}}</td>
