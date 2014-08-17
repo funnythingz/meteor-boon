@@ -65,7 +65,6 @@ Router.map(function() {
 Template.show.events({
   'click #delete': function() {
     BoonsCollection.remove($('#delete').data('id'));
-    location.href = '/list';
   }
 });
 
@@ -146,6 +145,7 @@ Template.new.events({
         createAt: (new Date()).getTime()
       });
 
+      location.href = $('#postEntry').data('link');
     }
 
   }

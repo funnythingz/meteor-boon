@@ -2,7 +2,7 @@
 
   <div class="container">
 
-    <h1>日程をえらブーン</h1>
+    <h1>日程をえらぶ</h1>
 
     <form class="form-horizontal">
 
@@ -11,13 +11,13 @@
         <div class="col-lg-6">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">イベントを入力するおっ(^q^</h3>
+              <h3 class="panel-title">STEP1: イベントを入力するおっ(^q^</h3>
             </div>
             <div class="panel-body">
 
               <div class="form-group">
                 <label for="inputEventTitle" class="col-lg-4 control-label">
-                  <p>イベント名</p>
+                  <p><span class="text-warning">*</span>イベント名</p>
                 </label>
                 <div class="col-lg-8">
                   <input type="text" class="form-control" id="inputEventTitle" placeholder="ex: 歓迎会">
@@ -53,7 +53,7 @@
         <div class="col-lg-6">
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">日程を選択するおっ(^q^</h3>
+              <h3 class="panel-title">STEP2: 日程を選択するおっ(^q^</h3>
             </div>
             <div class="panel-body">
               <div class="row">
@@ -63,7 +63,7 @@
                 <div class="col-md-6">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label for="select-date">日程</label>
+                      <label for="select-date"><span class="text-warning">*</span>日程</label>
                       <input class="form-control" id="select-date" type="text" readonly="readonly">
                       <p class="text-warning hide" id="selectDateIsRequired">日程えらんでちょ</p>
                     </div>
@@ -84,9 +84,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="row text-center">
-                    <a href="{{pathFor 'list'}}" class="btn btn-primary btn-lg" id="postEntry">登録するお</a>
-                  </div>
+                  <button type="button" class="btn btn-primary btn-lg btn-block" id="postEntry" data-link="{{pathFor 'list'}}">登録するお</button>
                 </div>
               </div>
             </div>
