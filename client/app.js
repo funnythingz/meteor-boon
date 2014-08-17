@@ -43,7 +43,7 @@ Router.map(function() {
   });
 
   this.route('show', {
-    path: '/posts/:_id',
+    path: '/boons/:_id',
     layoutTemplate: 'layout',
     template: 'show',
     data: function() {
@@ -53,18 +53,42 @@ Router.map(function() {
 
 });
 
-var requiredChecker = function(str) {
-   
-  if(_.isEmpty(str)) {
-    return false;
+var RequiredChecker = function() {
+
+  this.required = false;
+
+  this.isRequired = function() {
+    return this.required;
   }
 
-  if(/^\s+$/.test(str)) {
-    return false;
+  this.ok = function() {
+    this.required = true;
   }
 
-  return true;
+  this.ng = function() {
+    this.required = false;
+  }
+
+  this.check = function(str) {
+
+    if(_.isEmpty(str)) {
+      this.ng();
+      return this.required;
+    }
+
+    if(/^\s+$/.test(str)) {
+      this.ng();
+      return this.required;
+    }
+
+    this.ok();
+    return this.required;
+
+  }
 }
+
+var inputTitleRequiredChecker = new RequiredChecker();
+var selectDateRequiredChecker = new RequiredChecker();
 
 Template.new.events({
   'click #postEntry' : function(e) {
@@ -78,16 +102,30 @@ Template.new.events({
     var $selectStartTime = $('#select-start-time');
     var $selectEndTime = $('#select-end-time');
 
-    if(requiredChecker($inputEventTitle.val())) {
+    if(inputTitleRequiredChecker.check($inputEventTitle.val())) {
       $('#inputEventTitleIsRequired').addClass('hide');
+      inputTitleRequiredChecker.ok();
     } else {
       $('#inputEventTitleIsRequired').removeClass('hide');
+      inputTitleRequiredChecker.ng();
     }
 
-    if(requiredChecker($selectDate.val())) {
+    if(selectDateRequiredChecker.check($selectDate.val())) {
       $('#selectDateIsRequired').addClass('hide');
+      selectDateRequiredChecker.ok();
     } else {
       $('#selectDateIsRequired').removeClass('hide');
+      selectDateRequiredChecker.ng();
+    }
+
+    if(inputTitleRequiredChecker.isRequired() && selectDateRequiredChecker.isRequired()) {
+      console.log($inputEventTitle.val());
+      console.log($inputEventTime.val());
+      console.log($infoArea.val());
+      console.log($selectDate.val());
+      console.log($selectStartTime.val());
+      console.log($selectEndTime.val());
+      console.log((new Date()).getTime());
     }
 
   }
