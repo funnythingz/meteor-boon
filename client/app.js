@@ -46,7 +46,6 @@ Router.map(function() {
     template: 'list',
     data: function() {
       var _result = BoonsCollection.find({}, {sort: {created_at: -1}});
-      console.log(_result);
       return _result;
     }
   });
@@ -57,7 +56,6 @@ Router.map(function() {
     template: 'show',
     data: function() {
       var _result = BoonsCollection.findOne(this.params._id);
-      console.log(_result);
       return _result;
     }
   });
@@ -141,7 +139,6 @@ Template.new.events({
         createAt: (new Date()).getTime()
       });
 
-      console.log('completed');
     }
 
   }
