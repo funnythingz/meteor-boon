@@ -15,14 +15,16 @@
       </thead>
       <tbody>
         {{#each .}}
-        <td><a href="{{pathFor 'show'}}">{{_id}}</a></td>
-        <td>{{eventTitle}}</td>
-        <td>{{eventTime}}</td>
-        <td>{{eventInfo}}</td>
-        <td>{{selectDate}}</td>
-        <td>{{selectStartTime}}</td>
-        <td>{{selectEndTime}}</td>
-        <td>{{createAt}}</td>
+        <tr>
+          <td><a href="{{pathFor 'show'}}">{{_id}}</a></td>
+          <td>{{eventTitle}}</td>
+          <td>{{eventTime}}</td>
+          <td>{{eventInfo}}</td>
+          <td>{{selectDate}}</td>
+          <td>{{selectStartTime}}</td>
+          <td>{{selectEndTime}}</td>
+          <td>{{createAt}}</td>
+        </tr>
         {{/each}}
       </tbody>
     </table>

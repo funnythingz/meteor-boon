@@ -139,6 +139,7 @@ Template.new.events({
         createAt: (new Date()).getTime()
       });
 
+      location.href = '/list';
     }
 
   }
