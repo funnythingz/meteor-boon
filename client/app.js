@@ -40,10 +40,10 @@ Router.map(function() {
     }
   });
 
-  this.route('list', {
-    path: '/list',
+  this.route('admin', {
+    path: '/admin',
     layoutTemplate: 'layout',
-    template: 'list',
+    template: 'admin',
     data: function() {
       var _result = BoonsCollection.find({}, {sort: {created_at: -1}});
       return _result;
