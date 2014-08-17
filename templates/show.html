@@ -1,24 +1,44 @@
 <template name="show">
 
   <div class="container">
-    <div class="page-header">
-      <h1>
-        {{result.eventTitle}}
-        <small>{{result.selectDate}} / {{result.selectStartTime}} - {{result.selectEndTime}}</small>
-      </h1>
+    <div class="page-header row">
+      <div class="pull-left">
+        <h1>
+          {{result.eventTitle}}
+          <small>{{result.selectDate}} / {{result.selectStartTime}} - {{result.selectEndTime}}</small>
+        </h1>
+      </div>
+      <div class="pull-right">
+        <button class="btn btn-primary btn-lg">あなたの予定を登録する</button>
+      </div>
     </div>
 
+    {{#if hasDetailInfo}}
     <div class="row" id="{{result._id}}">
       <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">イベント情報</h3>
+        </div>
         <div class="panel-body">
-          <dl class="spacing">
-            <dt>予定時間</dt>
-            <dd><pre>{{result.eventTime}}</pre></dd>
-          </dl>
-          <dl>
-            <dt>詳細など</dt>
-            <dd><pre>{{result.eventInfo}}</pre></dd>
-          </dl>
+          {{#if result.eventTime}}
+          <h3>予定時間</h3>
+          <pre>{{result.eventTime}}</pre>
+          {{/if}}
+          {{#if result.eventInfo}}
+          <h3>詳細など</h3>
+          <pre>{{result.eventInfo}}</pre>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    {{/if}}
+
+    <div class="row">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">みんなの予定</h3>
+        </div>
+        <div class="panel-body">
         </div>
       </div>
     </div>

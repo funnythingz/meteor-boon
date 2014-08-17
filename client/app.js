@@ -60,9 +60,17 @@ Router.map(function() {
       }
     },
     data: function() {
+
+      var hasDetailInfo = function(_result) {
+        return (! _.isEmpty(_result.eventTime) && ! _.isEmpty(_result.eventInfo));
+      }
+
+      var _resultBoon = BoonsCollection.findOne(this.params._id);
+
       var showViewModel = {
         thisUrl: location.href,
-        result: BoonsCollection.findOne(this.params._id)
+        result: _resultBoon,
+        hasDetailInfo: hasDetailInfo(_resultBoon)
       }
 
       return showViewModel;
