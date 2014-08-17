@@ -2,16 +2,25 @@
 
   <div class="container">
     <div class="page-header">
-      <h1>{{result.eventTitle}}</h1>
+      <h1>
+        {{result.eventTitle}}
+        <small>{{result.selectDate}} / {{result.selectStartTime}} - {{result.selectEndTime}}</small>
+      </h1>
     </div>
 
     <div class="row" id="{{result._id}}">
-      <p>{{result.eventTime}}</p>
-      <p>{{result.eventInfo}}</p>
-      <p>{{result.selectDate}}</p>
-      <p>{{result.selectStartTime}}</p>
-      <p>{{result.selectEndTime}}</p>
-      <p>{{result.createAt}}</p>
+      <div class="panel panel-info">
+        <div class="panel-body">
+          <dl class="spacing">
+            <dt>予定時間</dt>
+            <dd><pre>{{result.eventTime}}</pre></dd>
+          </dl>
+          <dl>
+            <dt>詳細など</dt>
+            <dd><pre>{{result.eventInfo}}</pre></dd>
+          </dl>
+        </div>
+      </div>
     </div>
 
     <div class="row">
