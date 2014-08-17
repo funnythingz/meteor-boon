@@ -130,6 +130,7 @@ var inputTitleRequiredChecker = new RequiredChecker();
 var selectDateRequiredChecker = new RequiredChecker();
 
 Template.new.events({
+
   'click #postEntry' : function(e) {
 
     var $inputEventTitle = $('#inputEventTitle');
@@ -170,6 +171,7 @@ Template.new.events({
       });
 
       location.href = '/boons/' + _id;
+
     }
 
   }
