@@ -1,33 +1,39 @@
 <template name="list">
 
   <div class="container">
-    <h1>List</h1>
-    <table class="table table-striped table-hover">
-      <thead>
-        <th>#</th>
-        <th>eventTitle</th>
-        <th>eventTime</th>
-        <th>eventInfo</th>
-        <th>selectDate</th>
-        <th>selectStartTime</th>
-        <th>selectEndTime</th>
-        <th>createAt</th>
-      </thead>
-      <tbody>
-        {{#each .}}
-        <tr>
-          <td><a href="{{pathFor 'show'}}">{{_id}}</a></td>
-          <td>{{eventTitle}}</td>
-          <td>{{eventTime}}</td>
-          <td>{{eventInfo}}</td>
-          <td>{{selectDate}}</td>
-          <td>{{selectStartTime}}</td>
-          <td>{{selectEndTime}}</td>
-          <td>{{createAt}}</td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
+    <div class="page-header">
+      <h1>List</h1>
+    </div>
+    <div class="row">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>eventTitle</th>
+            <th>eventTime</th>
+            <th>eventInfo</th>
+            <th>selectDate</th>
+            <th>selectStartTime</th>
+            <th>selectEndTime</th>
+            <th>createAt</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each .}}
+          <tr>
+            <td><a href="{{pathFor 'show'}}">{{_id}}</a></td>
+            <td>{{eventTitle}}</td>
+            <td>{{eventTime}}</td>
+            <td>{{eventInfo}}</td>
+            <td>{{selectDate}}</td>
+            <td>{{selectStartTime}}</td>
+            <td>{{selectEndTime}}</td>
+            <td>{{createAt}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
 
 </template>

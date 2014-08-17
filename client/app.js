@@ -65,6 +65,7 @@ Router.map(function() {
 Template.show.events({
   'click #delete': function() {
     BoonsCollection.remove($('#delete').data('id'));
+    Router.go('list');
   }
 });
 
@@ -135,7 +136,7 @@ Template.new.events({
 
     if(inputTitleRequiredChecker.isRequired() && selectDateRequiredChecker.isRequired()) {
 
-      BoonsCollection.insert({
+      var _id = BoonsCollection.insert({
         eventTitle: $inputEventTitle.val(),
         eventTime: $inputEventTime.val(),
         eventInfo: $infoArea.val(),
@@ -145,7 +146,7 @@ Template.new.events({
         createAt: (new Date()).getTime()
       });
 
-      location.href = $('#postEntry').data('link');
+      location.href = '/boons/' + _id;
     }
 
   }

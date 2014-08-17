@@ -1,7 +1,9 @@
 <template name="show">
 
   <div class="container">
-    <h1>Show</h1>
+    <div class="page-header">
+      <h1>Show</h1>
+    </div>
 
     <div class="row">
       <p>{{_id}}</p>
@@ -15,7 +17,7 @@
     </div>
 
     <div class="row">
-      <a href="{{pathFor 'list'}}" id="delete" data-id="{{_id}}">delete</a>
+      <p id="delete" data-id="{{_id}}">delete</p>
     </div>
   </div>
 
