@@ -8,25 +8,16 @@
       </h1>
     </div>
 
-    {{#if hasDetailInfo}}
     <div class="row" id="{{result._id}}">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">イベント情報</h3>
+          <h3 class="panel-title">詳細など</h3>
         </div>
         <div class="panel-body">
-          {{#if result.eventTime}}
-          <h3>予定時間</h3>
-          <pre>{{result.eventTime}}</pre>
-          {{/if}}
-          {{#if result.eventInfo}}
-          <h3>詳細など</h3>
           <pre>{{result.eventInfo}}</pre>
-          {{/if}}
         </div>
       </div>
     </div>
-    {{/if}}
 
     <div class="row">
       <div class="panel panel-info">

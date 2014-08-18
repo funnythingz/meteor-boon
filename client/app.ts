@@ -101,25 +101,16 @@ Router.map(function() {
     this.route('show', {
         path: '/boons/:_id',
         template: 'show',
-        onBeforeAction: function() {
+        onAfterAction: function() {
             if(_.isUndefined(BoonsCollection.findOne(this.params._id))) {
                 Router.go('home');
             }
         },
         data: function() {
-            var hasDetailInfo = function(_result) {
-                return (! _.isEmpty(_result.eventTime) && ! _.isEmpty(_result.eventInfo));
-            }
-
-            var _resultBoon = BoonsCollection.findOne(this.params._id);
-
-            var showViewModel = {
+            return {
                 thisUrl: location.href,
-                result: _resultBoon,
-                hasDetailInfo: hasDetailInfo(_resultBoon)
+                result: BoonsCollection.findOne(this.params._id)
             }
-
-            return showViewModel;
         }
     });
 
@@ -139,6 +130,8 @@ Template['show'].events({
 });
 
 var inputTitleRequiredChecker: Util.RequiredChecker = new Util.RequiredChecker();
+var infoAreaRequiredChecker: Util.RequiredChecker = new Util.RequiredChecker();
+var inputPasswordRequiredChecker: Util.RequiredChecker = new Util.RequiredChecker();
 var selectDateRequiredChecker: Util.RequiredChecker = new Util.RequiredChecker();
 
 Template['new'].events({
@@ -146,7 +139,6 @@ Template['new'].events({
     'click #postEntry' : function(e) {
 
         var $inputEventTitle = $('#inputEventTitle');
-        var $inputEventTime = $('#inputEventTime');
         var $infoArea = $('#infoArea');
         var $inputPassword = $('#inputPassword');
 
@@ -156,26 +148,53 @@ Template['new'].events({
 
         if(inputTitleRequiredChecker.check($inputEventTitle.val())) {
             $('#inputEventTitleIsRequired').addClass('hide');
+            $('#eventTitleGroup').removeClass('has-warning');
             inputTitleRequiredChecker.ok();
         } else {
             $('#inputEventTitleIsRequired').removeClass('hide');
+            $('#eventTitleGroup').addClass('has-warning');
             inputTitleRequiredChecker.ng();
+        }
+
+        if(infoAreaRequiredChecker.check($infoArea.val())) {
+            $('#infoAreaIsRequired').addClass('hide');
+            $('#infoAreaGroup').removeClass('has-warning');
+            infoAreaRequiredChecker.ok();
+        } else {
+            $('#infoAreaIsRequired').removeClass('hide');
+            $('#infoAreaGroup').addClass('has-warning');
+            infoAreaRequiredChecker.ng();
+        }
+
+        if(inputPasswordRequiredChecker.check($inputPassword.val())) {
+            $('#inputPasswordIsRequired').addClass('hide');
+            $('#inputPasswordGroup').removeClass('has-warning');
+            inputPasswordRequiredChecker.ok();
+        } else {
+            $('#inputPasswordIsRequired').removeClass('hide');
+            $('#inputPasswordGroup').addClass('has-warning');
+            inputPasswordRequiredChecker.ng();
         }
 
         if(selectDateRequiredChecker.check($selectDate.val())) {
             $('#selectDateIsRequired').addClass('hide');
+            $('#selectDateGroup').removeClass('has-warning');
             selectDateRequiredChecker.ok();
         } else {
             $('#selectDateIsRequired').removeClass('hide');
+            $('#selectDateGroup').addClass('has-warning');
             selectDateRequiredChecker.ng();
         }
 
-        if(inputTitleRequiredChecker.isRequired() && selectDateRequiredChecker.isRequired()) {
+        if(inputTitleRequiredChecker.isRequired() &&
+           infoAreaRequiredChecker.isRequired() &&
+           inputPasswordRequiredChecker.isRequired() &&
+           selectDateRequiredChecker.isRequired()) {
 
             var _id = BoonsCollection.insert({
                 eventTitle: $inputEventTitle.val(),
-                eventTime: $inputEventTime.val(),
                 eventInfo: $infoArea.val(),
+                eventPassword: $inputPassword.val(),
                 selectDate: $selectDate.val(),
                 selectStartTime: $selectStartTime.val(),
                 selectEndTime: $selectEndTime.val(),

@@ -4,8 +4,8 @@
 interface IBoonsCollection {
     _id?: string;
     eventTitle: string;
-    eventTime: string;
     eventInfo: string;
+    eventPassword: string;
     selectDate: string;
     selectStartTime: string;
     selectEndTime: string;
