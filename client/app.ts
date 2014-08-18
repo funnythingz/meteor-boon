@@ -116,12 +116,18 @@ Router.map(function() {
 
 });
 
+var deleteEvent = function() {
+    BoonsCollection.remove($('#delete').data('id'));
+    Router.go('list');
+}
+
+Template['admin'].events({
+    'click #delete': deleteEvent
+});
+
 Template['show'].events({
 
-    'click #delete': function() {
-        BoonsCollection.remove($('#delete').data('id'));
-        Router.go('list');
-    },
+    'click #delete': deleteEvent,
 
     'click #copyTargetUrl': function() {
         $('#copyTargetUrl').select();

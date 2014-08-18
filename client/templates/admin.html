@@ -15,6 +15,7 @@
             <th>selectStartTime</th>
             <th>selectEndTime</th>
             <th>createAt</th>
+            <th>#del</th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +28,11 @@
             <td>{{selectStartTime}}</td>
             <td>{{selectEndTime}}</td>
             <td>{{createAt}}</td>
+            <td class="text-center">
+              <p class="text-danger tap">
+                <span class="glyphicon glyphicon-remove" id="delete" data-id="{{_id}}"></span>
+              </p>
+            </td>
           </tr>
           {{/each}}
         </tbody>
