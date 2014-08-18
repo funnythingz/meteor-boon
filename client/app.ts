@@ -5,6 +5,7 @@
 ///<reference path="../packages/typescript-libs/ironrouter.d.ts"/>
 
 ///<reference path="../collections.d.ts"/>
+///<reference path="../bootstrap.d.ts"/>
 
 module Util {
 
@@ -107,30 +108,45 @@ Router.map(function() {
             }
         },
         data: function() {
+
+            var _result: any = BoonsCollection.findOne(this.params._id);
+
             return {
                 thisUrl: location.href,
-                result: BoonsCollection.findOne(this.params._id)
+                result: _result
             }
         }
     });
 
 });
 
-var deleteEvent = function() {
-    BoonsCollection.remove($('#delete').data('id'));
-    Router.go('list');
-}
-
 Template['admin'].events({
-    'click #delete': deleteEvent
+    'click #delete': function() {
+        BoonsCollection.remove($('#delete').data('id'));
+        Router.go('list');
+    }
 });
 
 Template['show'].events({
 
-    'click #delete': deleteEvent,
-
     'click #copyTargetUrl': function() {
         $('#copyTargetUrl').select();
+    },
+
+    'click #deleteFire': function(e) {
+        var $deleteFire = $('#deleteFire');
+        var $inputPassword = $('#inputPassword');
+        var _id = $deleteFire.data('id');
+        var _password: any = BoonsCollection.findOne(_id).eventPassword;
+
+        if(_.isEqual(_password, $inputPassword.val())) {
+            $('#deleteModal').modal('hide').on('hidden.bs.modal', function(e) {
+                BoonsCollection.remove(_id);
+            });
+        } else {
+            $('#inputPasswordIsRequired').removeClass('hide');
+            $('#inputPasswordGroup').addClass('has-warning');
+        }
     }
 
 });

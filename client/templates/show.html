@@ -47,8 +47,33 @@
 
           <p class="text-danger tap">
             <span class="glyphicon glyphicon-remove"></span>
-            <span id="delete" data-id="{{result._id}}">このイベントを削除する</span>
+            <span data-id="{{result._id}}" data-toggle="modal" data-target="#deleteModal">このイベントを削除する</span>
           </p>
+          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h4 class="modal-title" id="deleteModalLabel">このイベントを削除します</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group" id="inputPasswordGroup">
+                    <div class="row">
+                      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                      <div class="col-lg-10">
+                        <input type="password" class="form-control spacing" id="inputPassword" placeholder="Password">
+                        <p class="text-warning hide" id="inputPasswordIsRequired">正しいパスワードをいれるんだブーン</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" id="deleteFire" data-id="{{result._id}}">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       </div>
