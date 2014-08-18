@@ -2,10 +2,10 @@
 ///<reference path="../packages/typescript-libs/meteor.d.ts"/>
 ///<reference path="../packages/typescript-libs/underscore.d.ts"/>
 ///<reference path="../packages/typescript-libs/jquery.d.ts"/>
-///<reference path="../packages/typescript-libs/ironrouter.d.ts"/>
 
 ///<reference path="../collections.d.ts"/>
 ///<reference path="../bootstrap.d.ts"/>
+///<reference path="../ironrouter.d.ts"/>
 
 module Util {
 
