@@ -101,7 +101,7 @@ Router.map(function() {
     this.route('show', {
         path: '/boons/:_id',
         template: 'show',
-        onAfterAction: function() {
+        onBeforeAction: function() {
             if(_.isUndefined(BoonsCollection.findOne(this.params._id))) {
                 Router.go('home');
             }
@@ -199,9 +199,9 @@ Template['new'].events({
                 selectStartTime: $selectStartTime.val(),
                 selectEndTime: $selectEndTime.val(),
                 createAt: (new Date()).getTime()
+            }, ()=> {
+                Router.go('show', {_id: _id});
             });
-
-            location.href = '/boons/' + _id;
 
         }
 
