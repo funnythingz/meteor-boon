@@ -9,3 +9,5 @@ insecure
 underscore
 iron-router
 http
+typescript-compiler
+typescript-libs

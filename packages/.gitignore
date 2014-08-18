@@ -8,3 +8,6 @@ iron-dynamic-template
 /blaze-layout
 /iron-core
 /iron-dynamic-template
+/typescript
+/typescript-compiler
+/typescript-libs
