@@ -17,23 +17,26 @@ var createTimeOptions = function() {
 
 }
 
+Router.configure({
+  layoutTemplate: 'layout',
+  notFoundTemplate: 'notFound',
+  loadingTemplate: 'loading'
+});
+
 Router.map(function() {
 
   this.route('home', {
     path: '/',
-    layoutTemplate: 'layout',
     template: 'home'
   });
 
   this.route('about', {
     path: '/about',
-    layoutTemplate: 'layout',
     template: 'about'
   });
 
   this.route('new', {
     path: '/new',
-    layoutTemplate: 'layout',
     template: 'new',
     data: function() {
       return createTimeOptions();
@@ -42,7 +45,6 @@ Router.map(function() {
 
   this.route('admin', {
     path: '/admin',
-    layoutTemplate: 'layout',
     template: 'admin',
     data: function() {
       var _result = BoonsCollection.find({}, {sort: {created_at: -1}});
@@ -52,7 +54,6 @@ Router.map(function() {
 
   this.route('show', {
     path: '/boons/:_id',
-    layoutTemplate: 'layout',
     template: 'show',
     onBeforeAction: function() {
       if(_.isUndefined(BoonsCollection.findOne(this.params._id))) {
