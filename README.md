@@ -4,6 +4,7 @@
 
 ```
 % mrt install
+% meteor add email
 ```
 
 ## run
