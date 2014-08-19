@@ -57,18 +57,20 @@
                   <h4 class="modal-title" id="deleteModalLabel">このイベントを削除します</h4>
                 </div>
                 <div class="modal-body">
-                  <div class="form-group" id="inputPasswordGroup">
+                  <div class="form-group{{#if deletePasswordError}} has-warning{{/if}}">
                     <div class="row">
                       <label for="inputPassword" class="col-lg-2 control-label">Password</label>
                       <div class="col-lg-10">
-                        <input type="password" class="form-control spacing" id="inputPassword" placeholder="Password">
-                        <p class="text-warning hide" id="inputPasswordIsRequired">正しいパスワードをいれるんだブーン</p>
+                        <input type="password" class="form-control spacing" id="deletePassword" placeholder="Password">
+                        {{#if deletePasswordError}}
+                        <p class="text-warning" id="inputPasswordIsRequired">正しいパスワードをいれるんだブーン</p>
+                        {{/if}}
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteCancel">Close</button>
                   <button type="button" class="btn btn-danger" id="deleteFire" data-id="{{result._id}}">Delete</button>
                 </div>
               </div>
