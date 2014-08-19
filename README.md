@@ -3,9 +3,7 @@
 ## setup
 
 ```
-% mrt add tsc
-% mrt add typescript-libs
-% mrt add iron-router
+% mrt install
 ```
 
 ## run
