@@ -1,14 +1,7 @@
-iron-router
-iron-layout
-blaze-layout
-iron-core
-iron-dynamic-template
 /iron-router
+/typescript-libs
+/tsc
 /iron-layout
 /blaze-layout
 /iron-core
 /iron-dynamic-template
-/typescript
-/typescript-compiler
-/typescript-libs
-/tsc

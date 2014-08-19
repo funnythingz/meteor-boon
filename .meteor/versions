@@ -42,7 +42,6 @@ spacebars@1.0.0
 standard-app-packages@1.0.0
 templating@1.0.4
 tsc@0.0.0
-typescript-libs@0.0.0
 ui@1.0.0
 underscore@1.0.0
 webapp@1.0.2
