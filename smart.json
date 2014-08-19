@@ -1,7 +1,10 @@
 {
   "packages": {
     "iron-router": {},
-    "typescript-libs": {},
+    "typescript-libs": {
+      "git": "https://github.com/orefalo/meteor-typescript-libs.git",
+      "tag": "v0.8.3.0"
+    },
     "tsc": {}
   }
 }
