@@ -1,8 +1,6 @@
 {
   "packages": {
-    "iron-router": {
-      "version": "0.8.2"
-    },
+    "iron-router": {},
     "typescript-libs": {},
     "tsc": {}
   }
