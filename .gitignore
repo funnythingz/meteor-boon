@@ -1,2 +1,6 @@
 .DS_Store
 main.tsc_placeholder.ts
+.meteor/local
+*/.meteor/local
+*/*/.meteor/local
+*/.meteor/identifier
