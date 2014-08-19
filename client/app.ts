@@ -43,6 +43,20 @@ module Util {
 
 }
 
+module ViewModel {
+
+    export class Boon {
+        constructor(public eventTitle: string,
+                    public eventInfo: string,
+                    public eventPassword: string,
+                    public selectDate: string,
+                    public selectStartTime: string,
+                    public selectEndTime: string,
+                    public createAt: number) {}
+    }
+
+}
+
 Router.configure({
     layoutTemplate: 'layout',
     notFoundTemplate: 'notFound',
@@ -158,18 +172,21 @@ Template['new'].events({
            !Session.get('inputPassword') &&
            !Session.get('selectDate')) {
 
-            var _id = BoonsCollection.insert({
-                eventTitle: $inputEventTitle.val(),
-                eventInfo: $infoArea.val(),
-                eventPassword: $inputPassword.val(),
-                selectDate: $selectDate.val(),
-                selectStartTime: $selectStartTime.val(),
-                selectEndTime: $selectEndTime.val(),
-                createAt: (new Date()).getTime()
-            }, ()=> {
+            var boon: ViewModel.Boon = new ViewModel.Boon($inputEventTitle.val(),
+                                                          $infoArea.val(),
+                                                          $inputPassword.val(),
+                                                          $selectDate.val(),
+                                                          $selectStartTime.val(),
+                                                          $selectEndTime.val(),
+                                                          (new Date()).getTime());
+
+            console.log(boon);
+
+            var _id = BoonsCollection.insert(boon, ()=> {
                 Router.go('show', {_id: _id});
             });
 
+            console.log(BoonsCollection.findOne(_id));
         }
 
     }
