@@ -27,38 +27,17 @@ module Util {
         return _timeOptions;
     }
 
-    export class RequiredChecker {
+    export function requiredCheck(arg: string): boolean {
 
-        private required: boolean = false;
-
-        isRequired(): boolean {
-            return this.required;
+        if(_.isEmpty(arg)) {
+            return true;
         }
 
-        ok() {
-            this.required = true;
+        if(/^\s+$/.test(arg)) {
+            return true;
         }
 
-        ng() {
-            this.required = false;
-        }
-
-        check(str): boolean {
-
-            if(_.isEmpty(str)) {
-                this.ng();
-                return this.required;
-            }
-
-            if(/^\s+$/.test(str)) {
-                this.ng();
-                return this.required;
-            }
-
-            this.ok();
-            return this.required;
-
-        }
+        return false;
 
     }
 
@@ -86,7 +65,13 @@ Router.map(function() {
         path: '/new',
         template: 'new',
         data: function() {
-            return Util.createTimeOptions();
+            return {
+                inputEventTitleError: Session.get('inputEventTitle'),
+                infoAreaError: Session.get('infoArea'),
+                inputPasswordError: Session.get('inputPassword'),
+                selectDateError: Session.get('selectDate'),
+                timeOptions: Util.createTimeOptions()
+            };
         }
     });
 
@@ -94,7 +79,7 @@ Router.map(function() {
         path: '/admin',
         template: 'admin',
         data: function() {
-            var _result: any = BoonsCollection.find({}, {sort: {created_at: -1}});
+            var _result: any = BoonsCollection.find({}, {sort: {createAt: -1}});
             return _result;
         }
     });
@@ -151,11 +136,6 @@ Template['show'].events({
 
 });
 
-var inputTitleRequiredChecker: Util.RequiredChecker = new Util.RequiredChecker();
-var infoAreaRequiredChecker: Util.RequiredChecker = new Util.RequiredChecker();
-var inputPasswordRequiredChecker: Util.RequiredChecker = new Util.RequiredChecker();
-var selectDateRequiredChecker: Util.RequiredChecker = new Util.RequiredChecker();
-
 Template['new'].events({
 
     'click #postEntry' : function(e) {
@@ -168,50 +148,15 @@ Template['new'].events({
         var $selectStartTime = $('#select-start-time');
         var $selectEndTime = $('#select-end-time');
 
-        if(inputTitleRequiredChecker.check($inputEventTitle.val())) {
-            $('#inputEventTitleIsRequired').addClass('hide');
-            $('#eventTitleGroup').removeClass('has-warning');
-            inputTitleRequiredChecker.ok();
-        } else {
-            $('#inputEventTitleIsRequired').removeClass('hide');
-            $('#eventTitleGroup').addClass('has-warning');
-            inputTitleRequiredChecker.ng();
-        }
+        Session.set('inputEventTitle', Util.requiredCheck($inputEventTitle.val()));
+        Session.set('infoArea', Util.requiredCheck($infoArea.val()));
+        Session.set('inputPassword', Util.requiredCheck($inputPassword.val()));
+        Session.set('selectDate', Util.requiredCheck($selectDate.val()));
 
-        if(infoAreaRequiredChecker.check($infoArea.val())) {
-            $('#infoAreaIsRequired').addClass('hide');
-            $('#infoAreaGroup').removeClass('has-warning');
-            infoAreaRequiredChecker.ok();
-        } else {
-            $('#infoAreaIsRequired').removeClass('hide');
-            $('#infoAreaGroup').addClass('has-warning');
-            infoAreaRequiredChecker.ng();
-        }
-
-        if(inputPasswordRequiredChecker.check($inputPassword.val())) {
-            $('#inputPasswordIsRequired').addClass('hide');
-            $('#inputPasswordGroup').removeClass('has-warning');
-            inputPasswordRequiredChecker.ok();
-        } else {
-            $('#inputPasswordIsRequired').removeClass('hide');
-            $('#inputPasswordGroup').addClass('has-warning');
-            inputPasswordRequiredChecker.ng();
-        }
-
-        if(selectDateRequiredChecker.check($selectDate.val())) {
-            $('#selectDateIsRequired').addClass('hide');
-            $('#selectDateGroup').removeClass('has-warning');
-            selectDateRequiredChecker.ok();
-        } else {
-            $('#selectDateIsRequired').removeClass('hide');
-            $('#selectDateGroup').addClass('has-warning');
-            selectDateRequiredChecker.ng();
-        }
-
-        if(inputTitleRequiredChecker.isRequired() &&
-           infoAreaRequiredChecker.isRequired() &&
-           inputPasswordRequiredChecker.isRequired() &&
-           selectDateRequiredChecker.isRequired()) {
+        if(!Session.get('inputEventTitle') &&
+           !Session.get('infoArea') &&
+           !Session.get('inputPassword') &&
+           !Session.get('selectDate')) {
 
             var _id = BoonsCollection.insert({
                 eventTitle: $inputEventTitle.val(),

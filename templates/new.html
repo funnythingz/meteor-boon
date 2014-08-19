@@ -24,7 +24,9 @@
                 </label>
                 <div class="col-lg-8">
                   <input type="text" class="form-control" id="inputEventTitle" placeholder="ex: 歓迎会">
-                  <p class="text-warning hide" id="inputEventTitleIsRequired">イベント名を教えてブーン</p>
+                  {{#if inputEventTitleError}}
+                  <p class="text-warning" id="inputEventTitleIsRequired">イベント名を教えてブーン</p>
+                  {{/if}}
                 </div>
               </div>
 
@@ -37,7 +39,9 @@
                 </label>
                 <div class="col-lg-8">
                   <textarea class="form-control" rows="5" id="infoArea"></textarea>
-                  <p class="text-warning hide" id="infoAreaIsRequired">詳細を教えてブーン</p>
+                  {{#if infoAreaError}}
+                  <p class="text-warning" id="infoAreaIsRequired">詳細を教えてブーン</p>
+                  {{/if}}
                 </div>
               </div>
 
@@ -50,7 +54,9 @@
                 </label>
                 <div class="col-lg-8">
                   <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                  <p class="text-warning hide" id="inputPasswordIsRequired">パスワードを入れるんだブーン</p>
+                  {{#if inputPasswordError}}
+                  <p class="text-warning" id="inputPasswordIsRequired">パスワードを入れるんだブーン</p>
+                  {{/if}}
                 </div>
               </div>
 
@@ -73,12 +79,14 @@
                     <div class="form-group" id="selectDateGroup">
                       <label for="select-date"><span class="text-warning">*</span>日程</label>
                       <input class="form-control" id="select-date" type="text" readonly="readonly">
-                      <p class="text-warning hide" id="selectDateIsRequired">日程をえらブーン</p>
+                      {{#if selectDateError}}
+                      <p class="text-warning" id="selectDateIsRequired">日程をえらブーン</p>
+                      {{/if}}
                     </div>
                     <div class="form-group">
                       <label for="select-start-time">開始時間</label>
                       <select class="form-control" id="select-start-time">
-                        {{#each .}}
+                        {{#each timeOptions}}
                           <option value="{{option}}">{{.}}</option>
                         {{/each}}
                       </select>
@@ -86,7 +94,7 @@
                     <div class="form-group">
                       <label for="select-end-time">終了時間</label>
                       <select class="form-control" id="select-end-time">
-                        {{#each .}}
+                        {{#each timeOptions}}
                           <option value="{{option}}">{{.}}</option>
                         {{/each}}
                       </select>
