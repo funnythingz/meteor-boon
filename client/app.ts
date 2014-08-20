@@ -5,7 +5,8 @@
 ///<reference path="../packages/typescript-libs/ironrouter.d.ts"/>
 
 ///<reference path="../collections.d.ts"/>
-///<reference path="../bootstrap.d.ts"/>
+///<reference path="../definitions/bootstrap.datepicker.d.ts"/>
+///<reference path="../definitions/bootstrap.d.ts"/>
 
 module Util {
 
@@ -38,6 +39,43 @@ module Util {
         }
 
         return false;
+
+    }
+
+    export function createDate(date: any): string {
+        return date.getFullYear() + "." + date.getMonth() + "." + date.getDate();
+    }
+
+    export class DatePickerApp {
+
+        $selectDate = $('#select-date');
+        $datePicker = $('#date-picker');
+
+        constructor() {
+            this.ready();
+        }
+
+        ready() {
+
+            var datepickerOptions = {
+                language: "ja",
+                todayHighlight: true,
+                format: "dd/mm/yyyy"
+            }
+
+            this.$datePicker
+                .datepicker(datepickerOptions)
+                .on("changeDate", e => this.updateDate(e));
+        }
+
+        updateDate(e) {
+            if(_.isUndefined(e.date)) {
+                this.$selectDate.val('')
+            } else {
+                var date = createDate(new Date(e.date));
+                this.$selectDate.val(date);
+            }
+        }
 
     }
 
@@ -78,6 +116,11 @@ Router.map(function() {
     this.route('new', {
         path: '/new',
         template: 'new',
+        onAfterAction: function() {
+            setTimeout(function() {
+                new Util.DatePickerApp();
+            },1000);
+        },
         data: function() {
             return {
                 inputEventTitleError: Session.get('inputEventTitle'),
