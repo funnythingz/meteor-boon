@@ -3,10 +3,7 @@
   "dependencies": {
     "basePackages": {
       "fast-render": {},
-      "typescript-libs": {
-        "git": "https://github.com/orefalo/meteor-typescript-libs.git",
-        "tag": "v0.8.3.0"
-      },
+      "typescript-libs": {},
       "tsc": {}
     },
     "packages": {
@@ -17,8 +14,8 @@
       },
       "typescript-libs": {
         "git": "https://github.com/orefalo/meteor-typescript-libs.git",
-        "tag": "v0.8.3.0",
-        "commit": "ec079126f6ec4ea7e37c88622aa56ac4e2836b19"
+        "tag": "v0.8.5",
+        "commit": "1f731e3b64a0f9d0f188d344bf34a66da59a6269"
       },
       "tsc": {
         "git": "https://github.com/jasonparekh/meteor-tsc.git",

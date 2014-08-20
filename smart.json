@@ -1,10 +1,7 @@
 {
   "packages": {
     "fast-render": {},
-    "typescript-libs": {
-      "git": "https://github.com/orefalo/meteor-typescript-libs.git",
-      "tag": "v0.8.3.0"
-    },
+    "typescript-libs": {},
     "tsc": {}
   }
 }
