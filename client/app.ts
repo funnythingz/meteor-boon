@@ -173,27 +173,32 @@ Router.map(function() {
 
     this.route('home', {
         path: '/',
-        controller: HomeController
+        controller: HomeController,
+        fastRender: true
     });
 
     this.route('about', {
         path: '/about',
-        controller: AboutController
+        controller: AboutController,
+        fastRender: true
     });
 
     this.route('new', {
         path: '/new',
-        controller: NewController
+        controller: NewController,
+        fastRender: true
     });
 
     this.route('admin', {
         path: '/admin',
-        controller: AdminController
+        controller: AdminController,
+        fastRender: true
     });
 
     this.route('show', {
         path: '/boons/:_id',
-        controller: ShowController
+        controller: ShowController,
+        fastRender: true
     });
 
 });

@@ -11,5 +11,3 @@ iron-router
 http
 tsc
 email
-iron:router
-
