@@ -101,75 +101,99 @@ Router.configure({
     loadingTemplate: 'loading'
 });
 
+
+var HomeController = RouteController.extend({
+    template: 'home'
+});
+
+var AboutController = RouteController.extend({
+    template: 'about'
+});
+
+var NewController = RouteController.extend({
+    template: 'new',
+
+    onAfterAction: function() {
+        setTimeout(function() {
+            new Util.DatePickerApp();
+        },1000);
+    },
+
+    data: function() {
+        return {
+            inputEventTitleError: Session.get('inputEventTitle'),
+            infoAreaError: Session.get('infoArea'),
+            inputPasswordError: Session.get('inputPassword'),
+            selectDateError: Session.get('selectDate'),
+            timeOptions: Util.createTimeOptions()
+        };
+    }
+});
+
+var AdminController = RouteController.extend({
+    template: 'admin',
+
+    data: function() {
+        var _result: any = BoonsCollection.find({}, {sort: {createAt: -1}});
+        return _result;
+    }
+});
+
+var ShowController = RouteController.extend({
+    template: 'show',
+    onBeforeAction: function() {
+        if(_.isUndefined(BoonsCollection.findOne(this.params._id))) {
+            Router.go('home');
+        }
+    },
+
+    onAfterAction: function() {
+        setTimeout(function() {
+            $('#deleteModal').on('hidden.bs.modal', function(e) {
+                Session.set('deletePassword', false);
+                $('#deletePassword').val('');
+            });
+        }, 1000);
+    },
+
+    data: function() {
+
+
+        var _result: any = BoonsCollection.findOne(this.params._id);
+
+        return {
+            thisUrl: location.href,
+            result: _result,
+            deletePasswordError: Session.get('deletePassword'),
+        }
+    }
+});
+
 Router.map(function() {
 
     this.route('home', {
         path: '/',
-        template: 'home'
+        controller: HomeController
     });
 
     this.route('about', {
         path: '/about',
-        template: 'about'
+        controller: AboutController
     });
 
     this.route('new', {
         path: '/new',
-        template: 'new',
-        onAfterAction: function() {
-            setTimeout(function() {
-                new Util.DatePickerApp();
-            },1000);
-        },
-        data: function() {
-            return {
-                inputEventTitleError: Session.get('inputEventTitle'),
-                infoAreaError: Session.get('infoArea'),
-                inputPasswordError: Session.get('inputPassword'),
-                selectDateError: Session.get('selectDate'),
-                timeOptions: Util.createTimeOptions()
-            };
-        }
+        controller: NewController
     });
 
     this.route('admin', {
         path: '/admin',
-        template: 'admin',
-        data: function() {
-            var _result: any = BoonsCollection.find({}, {sort: {createAt: -1}});
-            return _result;
-        }
+        controller: AdminController
     });
 
     this.route('show', {
         path: '/boons/:_id',
-        template: 'show',
-        onBeforeAction: function() {
-            if(_.isUndefined(BoonsCollection.findOne(this.params._id))) {
-                Router.go('home');
-            }
-        },
-
-        onAfterAction: function() {
-            setTimeout(function() {
-                $('#deleteModal').on('hidden.bs.modal', function(e) {
-                    Session.set('deletePassword', false);
-                    $('#deletePassword').val('');
-                });
-            }, 1000);
-        },
-
-        data: function() {
-
-
-            var _result: any = BoonsCollection.findOne(this.params._id);
-
-            return {
-                thisUrl: location.href,
-                result: _result,
-                deletePasswordError: Session.get('deletePassword'),
-            }
-        }
+        controller: ShowController
     });
 
 });
