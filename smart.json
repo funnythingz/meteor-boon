@@ -1,5 +1,8 @@
 {
   "packages": {
+    "iron-router": {
+      "version": "0.8.2"
+    },
     "fast-render": {},
     "typescript-libs": {},
     "tsc": {}
