@@ -48,7 +48,7 @@ module Util {
 
     export class DatePickerApp {
 
-        $selectDate = $('#select-date');
+        $dpCalendar = $('#dp-calendar');
         $datePicker = $('#date-picker');
 
         constructor() {
@@ -59,22 +59,21 @@ module Util {
 
             var datepickerOptions = {
                 language: "ja",
+                multidate: true,
                 todayHighlight: true,
                 format: "dd/mm/yyyy"
             }
 
-            this.$datePicker
+            this.$dpCalendar
                 .datepicker(datepickerOptions)
                 .on("changeDate", e => this.updateDate(e));
         }
 
+        // TODO: カレンダーの日付クリックで日付を足していく
+        // 選択された日付をクリックで解除される
         updateDate(e) {
-            if(_.isUndefined(e.date)) {
-                this.$selectDate.val('')
-            } else {
-                var date = createDate(new Date(e.date));
-                this.$selectDate.val(date);
-            }
+            var date = createDate(new Date(e.date));
+            this.$datePicker.val(date);
         }
 
     }
@@ -245,14 +244,14 @@ Template['new'].events({
         var $infoArea = $('#infoArea');
         var $inputPassword = $('#inputPassword');
 
-        var $selectDate = $('#select-date');
+        var $datePicker = $('#date-picker');
         var $selectStartTime = $('#select-start-time');
         var $selectEndTime = $('#select-end-time');
 
         Session.set('inputEventTitle', Util.requiredCheck($inputEventTitle.val()));
         Session.set('infoArea', Util.requiredCheck($infoArea.val()));
         Session.set('inputPassword', Util.requiredCheck($inputPassword.val()));
-        Session.set('selectDate', Util.requiredCheck($selectDate.val()));
+        Session.set('selectDate', Util.requiredCheck($datePicker.val()));
 
         if(!Session.get('inputEventTitle') &&
            !Session.get('infoArea') &&
@@ -262,7 +261,7 @@ Template['new'].events({
             var boon: ViewModel.Boon = new ViewModel.Boon($inputEventTitle.val(),
                                                           $infoArea.val(),
                                                           $inputPassword.val(),
-                                                          $selectDate.val(),
+                                                          $datePicker.val(),
                                                           $selectStartTime.val(),
                                                           $selectEndTime.val(),
                                                           (new Date()).getTime());
