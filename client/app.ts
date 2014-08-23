@@ -336,6 +336,10 @@ Template['show'].events({
 
 });
 
+Template['addSchedule']['dateToStr'] = function(date) {
+    return Util.createDate(date);
+}
+
 Template['show']['dateToStr'] = function(date) {
     return Util.createDate(date);
 }
