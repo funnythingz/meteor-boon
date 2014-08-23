@@ -147,7 +147,7 @@ var NewController = RouteController.extend({
     onAfterAction: function() {
         setTimeout(function() {
             new Util.DatePickerApp();
-        },1000);
+        }, 500);
     },
 
     data: function() {
