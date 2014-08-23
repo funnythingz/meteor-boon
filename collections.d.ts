@@ -13,3 +13,16 @@ interface IBoonsCollection {
 }
 
 declare var BoonsCollection: Meteor.Collection<IBoonsCollection>;
+
+
+interface ICommentsCollection {
+    _id?: string;
+    boonId: string;
+    nickname: string;
+    selectDates: string;
+    comment: string;
+    commentPassword: string;
+    createAt: number;
+}
+
+declare var CommentsCollection: Meteor.Collection<ICommentsCollection>;
