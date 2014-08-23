@@ -49,7 +49,7 @@ module Util {
     }
 
     export function createDate(date: any): string {
-        return date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate();
+        return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
     }
 
     export class DatePickerApp {
@@ -127,7 +127,7 @@ module ViewModel {
     export class Comment {
         constructor(public boonId: string,
                     public nickname: string,
-                    public selectDates: Array<string>,
+                    public selectDates: Array<any>,
                     public comment: string,
                     public commentPassword: string,
                     public createAt: number) {}
@@ -182,18 +182,29 @@ var AdminController = RouteController.extend({
 var ShowController = RouteController.extend({
     template: 'show',
     onBeforeAction: function() {
-        if(_.isUndefined(BoonsCollection.findOne(this.params._id))) {
-            Router.go('home');
-        }
+        setTimeout(()=> {
+            if(_.isUndefined(BoonsCollection.findOne(this.params._id))) {
+                Router.go('home');
+            }
+        }, 500);
     },
 
     onAfterAction: function() {
         setTimeout(function() {
+
             $('#deleteModal').on('hidden.bs.modal', function(e) {
                 Session.set('deletePassword', false);
                 $('#deletePassword').val('');
             });
-        }, 1000);
+
+            $('#addScheduleModal').on('hidden.bs.modal', function(e) {
+                Session.set('inputNickName', false);
+                Session.set('inputUserSchedulePassword', false)
+                $('#inputNickName').val('');
+                $('#inputUserSchedulePassword').val('');
+            });
+
+        }, 500);
     },
 
     data: function() {
@@ -204,6 +215,9 @@ var ShowController = RouteController.extend({
             thisUrl: location.href,
             result: _result,
             deletePasswordError: Session.get('deletePassword'),
+
+            inputNickNameError: Session.get('inputNickName'),
+            inputUserSchedulePasswordError: Session.get('inputUserSchedulePassword')
         }
     }
 });
@@ -276,39 +290,59 @@ Template['show'].events({
 
     'click #postComment': function(e) {
 
+        var $boon = $('#boon');
         var $inputNickName = $('#inputNickName');
+        var $selectStatus = $('.selectStatus');
         var $inputUserComment = $('#inputUserComment');
         var $inputUserSchedulePassword = $('#inputUserSchedulePassword');
 
+        var boonId = $boon.data('id');
+
+        var selectStatusList: Array<any> = [];
+            
+        $.each($selectStatus, (key, selectStatus)=> {
+
+            var $el = $(selectStatus);
+
+            var result: any = {};
+            result[$el.data('date')] = $el.val();
+
+            selectStatusList.push(result);
+
+        });
+
+        console.log(boonId);
         console.log($inputNickName.val());
+        console.log(selectStatusList);
         console.log($inputUserComment.val());
         console.log($inputUserSchedulePassword.val());
 
-        /**
-        Session.set('inputEventTitle', Util.requiredCheck($inputEventTitle.val()));
-        Session.set('infoArea', Util.requiredCheck($infoArea.val()));
-        Session.set('inputPassword', Util.requiredCheck($inputPassword.val()));
-        Session.set('selectDate', _.isEmpty(Memory.dates));
+        Session.set('inputNickName', Util.requiredCheck($inputNickName.val()));
+        Session.set('inputUserSchedulePassword', Util.requiredCheck($inputUserSchedulePassword.val()));
 
-        if(!Session.get('inputEventTitle') &&
-           !Session.get('infoArea') &&
-           !Session.get('inputPassword') &&
-           !Session.get('selectDate')) {
+        if(!Session.get('inputNickName') &&
+           !Session.get('inputUserSchedulePassword')) {
 
-            var boon: ViewModel.Boon = new ViewModel.Boon($inputEventTitle.val(),
-                                                          $infoArea.val(),
-                                                          $inputPassword.val(),
-                                                          Memory.dates,
-                                                          $selectStartTime.val(),
-                                                          $selectEndTime.val(),
-                                                          (new Date()).getTime());
+           var comment: ViewModel.Comment = new ViewModel.Comment(boonId,
+                                                                  $inputNickName.val(),
+                                                                  selectStatusList,
+                                                                  $inputUserComment.val(),
+                                                                  $inputUserSchedulePassword.val(),
+                                                                  (new Date()).getTime());
 
-            var _id = BoonsCollection.insert(boon, ()=> {
-                Router.go('show', {_id: _id});
-            });
+           var _id = CommentsCollection.insert(comment, ()=> {
+               console.log("ok");
+               Router.go('show', {_id: boonId});
+           });
 
         }
-        /**/
+
+    },
+
+    // TODO: 出欠席のステータス変更をわかりやすくしたい
+    // ここで処理する
+    "change .selectStatus": function(e) {
+        console.log(e.target.value);
     }
 
 });

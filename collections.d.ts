@@ -19,7 +19,7 @@ interface ICommentsCollection {
     _id?: string;
     boonId: string;
     nickname: string;
-    selectDates: Array<string>;
+    selectDates: Array<any>;
     comment: string;
     commentPassword: string;
     createAt: number;
