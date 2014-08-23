@@ -49,7 +49,7 @@ module Util {
     }
 
     export function createDate(date: any): string {
-        return date.getFullYear() + "." + date.getMonth() + "." + date.getDate();
+        return date.getFullYear() + "." + (date.getMonth() + 1) + "." + date.getDate();
     }
 
     export class DatePickerApp {
