@@ -6,7 +6,7 @@ interface IBoonsCollection {
     eventTitle: string;
     eventInfo: string;
     eventPassword: string;
-    selectDate: string;
+    selectDates: Array<string>;
     selectStartTime: string;
     selectEndTime: string;
     createAt: number;
@@ -19,7 +19,7 @@ interface ICommentsCollection {
     _id?: string;
     boonId: string;
     nickname: string;
-    selectDates: string;
+    selectDates: Array<string>;
     comment: string;
     commentPassword: string;
     createAt: number;
