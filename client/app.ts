@@ -174,8 +174,7 @@ var AdminController = RouteController.extend({
     template: 'admin',
 
     data: function() {
-        var _result: any = BoonsCollection.find({}, {sort: {createAt: -1}});
-        return _result;
+        return BoonsCollection.find({}, {sort: {createAt: -1}});
     }
 });
 
@@ -209,13 +208,14 @@ var ShowController = RouteController.extend({
 
     data: function() {
 
-        var _result: any = BoonsCollection.findOne(this.params._id);
+        var boon: any = BoonsCollection.findOne(this.params._id);
+        var comments: any = CommentsCollection.find({boonId: this.params._id}, {sort: {createAt: -1}});
 
         return {
             thisUrl: location.href,
-            result: _result,
+            boon: boon,
+            comments: comments,
             deletePasswordError: Session.get('deletePassword'),
-
             inputNickNameError: Session.get('inputNickName'),
             inputUserSchedulePasswordError: Session.get('inputUserSchedulePassword')
         }
@@ -298,24 +298,14 @@ Template['show'].events({
 
         var boonId = $boon.data('id');
 
-        var selectStatusList: Array<any> = [];
-            
-        $.each($selectStatus, (key, selectStatus)=> {
+        var selectStatusList: Array<any> = $.map($selectStatus, (selectStatus)=> {
 
-            var $el = $(selectStatus);
-
-            var result: any = {};
-            result[$el.data('date')] = $el.val();
-
-            selectStatusList.push(result);
+            return {
+                date: $(selectStatus).data('date'),
+                status: $(selectStatus).val()
+            };
 
         });
-
-        console.log(boonId);
-        console.log($inputNickName.val());
-        console.log(selectStatusList);
-        console.log($inputUserComment.val());
-        console.log($inputUserSchedulePassword.val());
 
         Session.set('inputNickName', Util.requiredCheck($inputNickName.val()));
         Session.set('inputUserSchedulePassword', Util.requiredCheck($inputUserSchedulePassword.val()));
@@ -331,7 +321,6 @@ Template['show'].events({
                                                                   (new Date()).getTime());
 
            var _id = CommentsCollection.insert(comment, ()=> {
-               console.log("ok");
                Router.go('show', {_id: boonId});
            });
 
@@ -349,6 +338,45 @@ Template['show'].events({
 
 Template['show']['dateToStr'] = function(date) {
     return Util.createDate(date);
+}
+
+Template['show']['statusState'] = function(status) {
+
+    switch(status) {
+        case 'ok':
+            return 'success';
+        case 'ng':
+            return 'danger';
+        case 'pending':
+            return 'warning';
+    }
+
+}
+
+Template['show']['statusIcon'] = function(status) {
+
+    switch(status) {
+        case 'ok':
+            return 'glyphicon-ok';
+        case 'ng':
+            return 'glyphicon-remove';
+        case 'pending':
+            return 'glyphicon-minus';
+    }
+
+}
+
+Template['show']['statusText'] = function(status) {
+
+    switch(status) {
+        case 'ok':
+            return 'text-success';
+        case 'ng':
+            return 'text-danger';
+        case 'pending':
+            return 'text-warning';
+    }
+
 }
 
 Template['new'].events({
