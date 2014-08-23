@@ -190,7 +190,6 @@ var ShowController = RouteController.extend({
     data: function() {
 
         var _result: any = BoonsCollection.findOne(this.params._id);
-        console.log(_result);
 
         return {
             thisUrl: location.href,
@@ -267,6 +266,10 @@ Template['show'].events({
     }
 
 });
+
+Template['show']['dateToStr'] = function(date) {
+    return Util.createDate(date);
+}
 
 Template['new'].events({
 
