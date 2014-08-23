@@ -124,6 +124,15 @@ module ViewModel {
                     public createAt: number) {}
     }
 
+    export class Comment {
+        constructor(public boonId: string,
+                    public nickname: string,
+                    public selectDates: Array<string>,
+                    public comment: string,
+                    public commentPassword: string,
+                    public createAt: number) {}
+    }
+
 }
 
 Router.configure({
@@ -263,6 +272,43 @@ Template['show'].events({
 
     'click #sendMail': function(e) {
         Meteor.call("sendMail");
+    },
+
+    'click #postComment': function(e) {
+
+        var $inputNickName = $('#inputNickName');
+        var $inputUserComment = $('#inputUserComment');
+        var $inputUserSchedulePassword = $('#inputUserSchedulePassword');
+
+        console.log($inputNickName.val());
+        console.log($inputUserComment.val());
+        console.log($inputUserSchedulePassword.val());
+
+        /**
+        Session.set('inputEventTitle', Util.requiredCheck($inputEventTitle.val()));
+        Session.set('infoArea', Util.requiredCheck($infoArea.val()));
+        Session.set('inputPassword', Util.requiredCheck($inputPassword.val()));
+        Session.set('selectDate', _.isEmpty(Memory.dates));
+
+        if(!Session.get('inputEventTitle') &&
+           !Session.get('infoArea') &&
+           !Session.get('inputPassword') &&
+           !Session.get('selectDate')) {
+
+            var boon: ViewModel.Boon = new ViewModel.Boon($inputEventTitle.val(),
+                                                          $infoArea.val(),
+                                                          $inputPassword.val(),
+                                                          Memory.dates,
+                                                          $selectStartTime.val(),
+                                                          $selectEndTime.val(),
+                                                          (new Date()).getTime());
+
+            var _id = BoonsCollection.insert(boon, ()=> {
+                Router.go('show', {_id: _id});
+            });
+
+        }
+        /**/
     }
 
 });
