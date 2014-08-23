@@ -198,8 +198,12 @@ var ShowController = RouteController.extend({
 
             $('#addScheduleModal').on('hidden.bs.modal', function(e) {
                 Session.set('inputNickName', false);
-                Session.set('inputUserSchedulePassword', false)
+                Session.set('inputUserSchedulePassword', false);
+
+                // TODO: statusの選択肢もクリアする
+                //$('.selectStatus')
                 $('#inputNickName').val('');
+                $('#inputUserComment').val('');
                 $('#inputUserSchedulePassword').val('');
             });
 
@@ -286,7 +290,11 @@ Template['show'].events({
 
     'click #sendMail': function(e) {
         Meteor.call("sendMail");
-    },
+    }
+
+});
+
+Template['addSchedule'].events({
 
     'click #postComment': function(e) {
 
@@ -313,16 +321,16 @@ Template['show'].events({
         if(!Session.get('inputNickName') &&
            !Session.get('inputUserSchedulePassword')) {
 
-           var comment: ViewModel.Comment = new ViewModel.Comment(boonId,
-                                                                  $inputNickName.val(),
-                                                                  selectStatusList,
-                                                                  $inputUserComment.val(),
-                                                                  $inputUserSchedulePassword.val(),
-                                                                  (new Date()).getTime());
+            var comment: ViewModel.Comment = new ViewModel.Comment(boonId,
+                                                                   $inputNickName.val(),
+                                                                   selectStatusList,
+                                                                   $inputUserComment.val(),
+                                                                   $inputUserSchedulePassword.val(),
+                                                                   (new Date()).getTime());
 
-           var _id = CommentsCollection.insert(comment, ()=> {
-               Router.go('show', {_id: boonId});
-           });
+            var _id = CommentsCollection.insert(comment, ()=> {
+                $("#addScheduleModal").modal("hide");
+            });
 
         }
 
