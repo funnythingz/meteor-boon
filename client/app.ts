@@ -8,6 +8,12 @@
 ///<reference path="../definitions/bootstrap.datepicker.d.ts"/>
 ///<reference path="../definitions/bootstrap.d.ts"/>
 
+module Memory {
+
+    export var dates: Array<string> = [];
+
+}
+
 module Util {
 
     export function createTimeOptions() {
@@ -49,6 +55,7 @@ module Util {
     export class DatePickerApp {
 
         $dpCalendar = $('#dp-calendar');
+        $inputDates = $('#input-dates');
         $datePicker = $('#date-picker');
 
         constructor() {
@@ -69,12 +76,37 @@ module Util {
                 .on("changeDate", e => this.updateDate(e));
         }
 
-        // TODO: カレンダーの日付クリックで日付を足していく
-        // 選択された日付をクリックで解除される
         updateDate(e) {
-            var date = createDate(new Date(e.date));
-            this.$datePicker.val(date);
+
+            Memory.dates = e.dates;
+
+            Session.set('selectDate', _.isEmpty(Memory.dates));
+
+            this.$inputDates.html('');
+
+            $.map(Memory.dates, (date)=> {
+
+                var dateVal: string = createDate(new Date(date));
+
+                var $formGroup = $('<div class="form-group has-feedback col-md-12 spacing">');
+
+                var $input = $('<input class="form-control select-date" type="text" readonly="readonly">')
+                    .val(dateVal).appendTo(this.$inputDates);
+
+                var $deleteDate = $('<span class="glyphicon glyphicon-remove form-control-feedback tap" data-date="' + date + '"></span>')
+                    .on('click', e => {
+                        Memory.dates = _.reject(Memory.dates, arg => {return _.isEqual(arg, date)});
+                        this.$dpCalendar.datepicker('setDates', Memory.dates);
+                    });
+
+                $formGroup.append($input, $deleteDate);
+
+                this.$inputDates.append($formGroup);
+
+            });
+
         }
+
 
     }
 
@@ -86,7 +118,7 @@ module ViewModel {
         constructor(public eventTitle: string,
                     public eventInfo: string,
                     public eventPassword: string,
-                    public selectDate: string,
+                    public selectDates: Array<string>,
                     public selectStartTime: string,
                     public selectEndTime: string,
                     public createAt: number) {}
@@ -157,8 +189,8 @@ var ShowController = RouteController.extend({
 
     data: function() {
 
-
         var _result: any = BoonsCollection.findOne(this.params._id);
+        console.log(_result);
 
         return {
             thisUrl: location.href,
@@ -244,14 +276,13 @@ Template['new'].events({
         var $infoArea = $('#infoArea');
         var $inputPassword = $('#inputPassword');
 
-        var $datePicker = $('#date-picker');
         var $selectStartTime = $('#select-start-time');
         var $selectEndTime = $('#select-end-time');
 
         Session.set('inputEventTitle', Util.requiredCheck($inputEventTitle.val()));
         Session.set('infoArea', Util.requiredCheck($infoArea.val()));
         Session.set('inputPassword', Util.requiredCheck($inputPassword.val()));
-        Session.set('selectDate', Util.requiredCheck($datePicker.val()));
+        Session.set('selectDate', _.isEmpty(Memory.dates));
 
         if(!Session.get('inputEventTitle') &&
            !Session.get('infoArea') &&
@@ -261,7 +292,7 @@ Template['new'].events({
             var boon: ViewModel.Boon = new ViewModel.Boon($inputEventTitle.val(),
                                                           $infoArea.val(),
                                                           $inputPassword.val(),
-                                                          $datePicker.val(),
+                                                          Memory.dates,
                                                           $selectStartTime.val(),
                                                           $selectEndTime.val(),
                                                           (new Date()).getTime());

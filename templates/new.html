@@ -15,47 +15,47 @@
             </div>
             <div class="panel-body">
 
-              <div class="form-group{{#if inputEventTitleError}} has-warning{{/if}}">
+              <div class="form-group{{#if inputEventTitleError}} has-error{{/if}}">
                 <label for="inputEventTitle" class="col-lg-4 control-label">
                   <p>
-                    <span class="text-warning">*</span>
+                    <span class="text-danger">*</span>
                     イベント名
                   </p>
                 </label>
                 <div class="col-lg-8">
                   <input type="text" class="form-control" id="inputEventTitle" placeholder="ex: 歓迎会">
                   {{#if inputEventTitleError}}
-                  <p class="text-warning" id="inputEventTitleIsRequired">イベント名を教えてブーン</p>
+                  <p class="text-danger" id="inputEventTitleIsRequired">イベント名を教えてブーン</p>
                   {{/if}}
                 </div>
               </div>
 
-              <div class="form-group{{#if infoAreaError}} has-warning{{/if}}">
+              <div class="form-group{{#if infoAreaError}} has-error{{/if}}">
                 <label for="infoArea" class="col-lg-4 control-label">
                   <p>
-                    <span class="text-warning">*</span>
+                    <span class="text-danger">*</span>
                     詳細など
                   </p>
                 </label>
                 <div class="col-lg-8">
                   <textarea class="form-control" rows="5" id="infoArea"></textarea>
                   {{#if infoAreaError}}
-                  <p class="text-warning" id="infoAreaIsRequired">詳細を教えてブーン</p>
+                  <p class="text-danger" id="infoAreaIsRequired">詳細を教えてブーン</p>
                   {{/if}}
                 </div>
               </div>
 
-              <div class="form-group{{#if inputPasswordError}} has-warning{{/if}}">
+              <div class="form-group{{#if inputPasswordError}} has-error{{/if}}">
                 <label for="inputPassword" class="col-lg-4 control-label">
                   <p>
-                    <span class="text-warning">*</span>
+                    <span class="text-danger">*</span>
                     主催者パスワード
                   </p>
                 </label>
                 <div class="col-lg-8">
                   <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                   {{#if inputPasswordError}}
-                  <p class="text-warning" id="inputPasswordIsRequired">パスワードを入れるんだブーン</p>
+                  <p class="text-danger" id="inputPasswordIsRequired">パスワードを入れるんだブーン</p>
                   {{/if}}
                 </div>
               </div>
@@ -70,19 +70,27 @@
               <h3 class="panel-title">STEP2: 日程を選択するブーン(^q^</h3>
             </div>
             <div class="panel-body">
-              <div class="row">
+
+              <div class="row spacing">
                 <div class="col-md-6">
                   <div id="dp-calendar"></div>
                 </div>
                 <div class="col-md-6">
                   <div class="col-md-12">
-                    <div class="form-group{{#if selectDateError}} has-warning{{/if}}">
-                      <label for="date-picker"><span class="text-warning">*</span>日程</label>
-                      <input class="form-control" id="date-picker" type="text" readonly="readonly">
+                    <div class="form-group{{#if selectDateError}} has-error{{/if}}">
+                      <label for="date-picker"><span class="text-danger">*</span>日程</label>
+                      <div id="input-dates" class="row"></div>
                       {{#if selectDateError}}
-                      <p class="text-warning" id="selectDateIsRequired">日程をえらブーン</p>
+                      <p class="text-danger" id="selectDateIsRequired">日程をえらブーン</p>
                       {{/if}}
                     </div>
+                  </div>
+                </div>
+              </div><!-- /row -->
+
+              <div class="row spacing">
+                <div class="col-md-12">
+                  <div class="col-md-5">
                     <div class="form-group">
                       <label for="select-start-time">開始時間</label>
                       <select class="form-control" id="select-start-time">
@@ -91,6 +99,8 @@
                         {{/each}}
                       </select>
                     </div>
+                  </div>
+                  <div class="col-md-5 col-md-offset-1">
                     <div class="form-group">
                       <label for="select-end-time">終了時間</label>
                       <select class="form-control" id="select-end-time">
@@ -100,9 +110,11 @@
                       </select>
                     </div>
                   </div>
-                  <button type="button" class="btn btn-primary btn-lg btn-block" id="postEntry" data-link="{{pathFor 'admin'}}">登録するブーン</button>
                 </div>
-              </div>
+              </div><!-- /row -->
+
+              <button type="button" class="btn btn-primary btn-lg btn-block" id="postEntry" data-link="{{pathFor 'admin'}}">登録するブーン</button>
+
             </div>
           </div>
         </div>
