@@ -226,6 +226,14 @@ var ShowController = RouteController.extend({
     }
 });
 
+var CommentController = RouteController.extend({
+    template: 'comment',
+
+    data: function() {
+        return CommentsCollection.findOne(this.params._id);
+    }
+});
+
 Router.map(function() {
 
     this.route('home', {
@@ -255,6 +263,12 @@ Router.map(function() {
     this.route('show', {
         path: '/boons/:_id',
         controller: ShowController,
+        fastRender: true
+    });
+
+    this.route('comment', {
+        path: '/comments/:_id',
+        controller: CommentController,
         fastRender: true
     });
 

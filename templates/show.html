@@ -40,7 +40,7 @@
               <tbody>
                 {{#each comments}}
                 <tr>
-                  <th>{{nickname}}</th>
+                  <th><a href="{{pathFor 'comment'}}">{{nickname}}</a></th>
                   {{#each selectDates}}
                   <td class="text-center {{statusState status}}">
                     <span class="glyphicon {{statusIcon status}} {{statusText status}}"></span>
