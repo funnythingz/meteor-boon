@@ -11,3 +11,8 @@ iron-router
 http
 tsc
 email
+iron:router
+arunoda:fast-render
+orefalo:typescript-libs
+jasonparekh:tsc
+
