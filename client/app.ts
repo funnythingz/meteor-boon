@@ -52,6 +52,62 @@ module Util {
         return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
     }
 
+    export class StatusCreator {
+
+        static statusToBootstrapStatus(status) {
+
+            switch(status) {
+                case 'ok':
+                    return 'success';
+                case 'ng':
+                    return 'danger';
+                case 'pending':
+                    return 'warning';
+            }
+
+        }
+
+        static statusToBootstrapTextStatus(status) {
+
+            switch(status) {
+                case 'ok':
+                    return 'text-success';
+                case 'ng':
+                    return 'text-danger';
+                case 'pending':
+                    return 'text-warning';
+            }
+
+        }
+
+        static statusToBootstrapStatusIcon(status) {
+
+            switch(status) {
+                case 'ok':
+                    return 'glyphicon-ok';
+                case 'ng':
+                    return 'glyphicon-remove';
+                case 'pending':
+                    return 'glyphicon-minus';
+            }
+
+        }
+
+    }
+
+    export function statusToBootstrapStatus(status) {
+
+        switch(status) {
+            case 'ok':
+                return 'success';
+            case 'ng':
+                return 'danger';
+            case 'pending':
+                return 'warning';
+        }
+
+    }
+
     export class DatePickerApp {
 
         $dpCalendar = $('#dp-calendar');
@@ -375,42 +431,15 @@ Template['show']['dateToStr'] = function(date) {
 }
 
 Template['show']['statusState'] = function(status) {
-
-    switch(status) {
-        case 'ok':
-            return 'success';
-        case 'ng':
-            return 'danger';
-        case 'pending':
-            return 'warning';
-    }
-
+    return Util.StatusCreator.statusToBootstrapStatus(status);
 }
 
 Template['show']['statusIcon'] = function(status) {
-
-    switch(status) {
-        case 'ok':
-            return 'glyphicon-ok';
-        case 'ng':
-            return 'glyphicon-remove';
-        case 'pending':
-            return 'glyphicon-minus';
-    }
-
+    return Util.StatusCreator.statusToBootstrapStatusIcon(status);
 }
 
 Template['show']['statusText'] = function(status) {
-
-    switch(status) {
-        case 'ok':
-            return 'text-success';
-        case 'ng':
-            return 'text-danger';
-        case 'pending':
-            return 'text-warning';
-    }
-
+    return Util.StatusCreator.statusToBootstrapTextStatus(status);
 }
 
 Template['new'].events({
@@ -451,3 +480,15 @@ Template['new'].events({
     }
 
 });
+
+Template['comment']['statusState'] = function(status) {
+    return Util.StatusCreator.statusToBootstrapStatus(status);
+}
+
+Template['comment']['statusIcon'] = function(status) {
+    return Util.StatusCreator.statusToBootstrapStatusIcon(status);
+}
+
+Template['comment']['statusText'] = function(status) {
+    return Util.StatusCreator.statusToBootstrapTextStatus(status);
+}

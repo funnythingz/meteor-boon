@@ -3,6 +3,14 @@
   <div class="container comment" id="comment" data-id="{{_id}}">
     <div class="page-header">
       <h1>{{nickname}}</h1>
+      <p>{{comment}}</p>
+      <ul>
+        {{#each selectDates}}
+        <li class="{{statusState status}}">
+          <span class="glyphicon {{statusIcon status}} {{statusText status}}"></span>
+        </li>
+        {{/each}}
+      </ul>
     </div>
   </div>
 
