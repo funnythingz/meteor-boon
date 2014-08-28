@@ -312,10 +312,6 @@ Template['show'].events({
         } else {
             Session.set('deletePassword', true);
         }
-    },
-
-    'click #sendMail': function(e) {
-        Meteor.call("sendMail");
     }
 
 });
