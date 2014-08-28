@@ -277,7 +277,6 @@ Router.map(function() {
 Template['admin'].events({
     'click #delete': function() {
         BoonsCollection.remove($('#delete').data('id'));
-        Router.go('list');
     }
 });
 
@@ -287,15 +286,28 @@ Template['show'].events({
         $('#copyTargetUrl').select();
     },
 
-    'click #deleteFire': function(e) {
-        var $deleteFire = $('#deleteFire');
+    'click #deleteBoon': function(e) {
+        var $deleteBoon = $('#deleteBoon');
         var $deletePassword = $('#deletePassword');
-        var _id = $deleteFire.data('id');
+
+        var _id = $deleteBoon.data('id');
         var _password: any = BoonsCollection.findOne(_id).eventPassword;
+
+        var _comments: Array<string> = [];
+        if(!_.isUndefined($deleteBoon.data('comments'))) {
+            _.compact($deleteBoon.data('comments').split(","));
+        }
 
         if(_.isEqual(_password, $deletePassword.val())) {
             $('#deleteModal').modal('hide').on('hidden.bs.modal', function(e) {
+
                 BoonsCollection.remove(_id);
+
+                $.each(_comments, (key, comment)=> {
+                    CommentsCollection.remove(comment);
+                });
+
+                Router.go('admin');
             });
         } else {
             Session.set('deletePassword', true);
