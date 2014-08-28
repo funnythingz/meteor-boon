@@ -1,6 +1,6 @@
-///<reference path="../packages/typescript-libs/lib.d.ts"/>
-///<reference path="../packages/typescript-libs/meteor.d.ts"/>
-///<reference path="../packages/typescript-libs/underscore.d.ts"/>
+///<reference path="../definitions/lib.d.ts"/>
+///<reference path="../definitions/meteor.d.ts"/>
+///<reference path="../definitions/underscore.d.ts"/>
 
 // TODO: メールサーバーの設定
 Meteor.startup(function () {

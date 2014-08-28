@@ -1,12 +1,12 @@
-///<reference path="../packages/typescript-libs/lib.d.ts"/>
-///<reference path="../packages/typescript-libs/meteor.d.ts"/>
-///<reference path="../packages/typescript-libs/underscore.d.ts"/>
-///<reference path="../packages/typescript-libs/jquery.d.ts"/>
-///<reference path="../packages/typescript-libs/ironrouter.d.ts"/>
-
-///<reference path="../collections.d.ts"/>
+///<reference path="../definitions/lib.d.ts"/>
+///<reference path="../definitions/meteor.d.ts"/>
+///<reference path="../definitions/underscore.d.ts"/>
+///<reference path="../definitions/jquery.d.ts"/>
+///<reference path="../definitions/ironrouter.d.ts"/>
 ///<reference path="../definitions/bootstrap.datepicker.d.ts"/>
 ///<reference path="../definitions/bootstrap.d.ts"/>
+
+///<reference path="../interface/collections.d.ts"/>
 
 module Memory {
 

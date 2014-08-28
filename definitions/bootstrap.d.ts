@@ -3,7 +3,7 @@
 // Definitions by: Boris Yankov <https://github.com/borisyankov/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
-///<reference path="../packages/typescript-libs/jquery.d.ts"/>
+///<reference path="../definitions/jquery.d.ts"/>
 
 interface ModalOptions {
     backdrop?: boolean;

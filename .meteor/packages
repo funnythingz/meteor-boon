@@ -6,8 +6,9 @@
 standard-app-packages
 autopublish
 insecure
+iron:router
+fourseven:scss
+orefalo:typescript-compiler
+handlebars
 underscore
-iron-router
-http
-tsc
-email
+

@@ -1,4 +1,4 @@
-///<reference path="./collections.d.ts"/>
+///<reference path="./interface/collections.d.ts"/>
 
 BoonsCollection = new Meteor.Collection("boons");
 
