@@ -1,5 +1,5 @@
-///<reference path="./packages/typescript-libs/lib.d.ts"/>
-///<reference path="./packages/typescript-libs/meteor.d.ts"/>
+///<reference path="../definitions/lib.d.ts"/>
+///<reference path="../definitions/meteor.d.ts"/>
 
 interface IBoonsCollection {
     _id?: string;

@@ -6,13 +6,9 @@
 standard-app-packages
 autopublish
 insecure
-underscore
-iron-router
-http
-tsc
-email
 iron:router
-arunoda:fast-render
-orefalo:typescript-libs
-jasonparekh:tsc
+fourseven:scss
+orefalo:typescript-compiler
+handlebars
+underscore
 

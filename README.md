@@ -1,14 +1,9 @@
 # meteor-boon
 
-## setup
-
-```
-% mrt install
-% meteor add email
-```
+Meteor `~v0.9.0`
 
 ## run
 
 ```
-% mrt
+% meteor
 ```
