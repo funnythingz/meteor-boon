@@ -307,7 +307,7 @@ Template['show'].events({
                     CommentsCollection.remove(comment);
                 });
 
-                Router.go('admin');
+                Router.go('home');
             });
         } else {
             Session.set('deletePassword', true);
