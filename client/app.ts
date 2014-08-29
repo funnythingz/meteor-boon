@@ -226,14 +226,6 @@ var NewController = RouteController.extend({
     }
 });
 
-var AdminController = RouteController.extend({
-    template: 'admin',
-
-    data: function() {
-        return BoonsCollection.find({}, {sort: {createAt: -1}});
-    }
-});
-
 var ShowController = RouteController.extend({
     template: 'show',
     onBeforeAction: function() {
@@ -308,22 +300,11 @@ Router.map(function() {
         controller: NewController,
     });
 
-    this.route('admin', {
-        path: '/admin',
-        controller: AdminController,
-    });
-
     this.route('show', {
         path: '/boons/:_id',
         controller: ShowController,
     });
 
-});
-
-Template['admin'].events({
-    'click #delete': function() {
-        BoonsCollection.remove($('#delete').data('id'));
-    }
 });
 
 Template['show'].events({
