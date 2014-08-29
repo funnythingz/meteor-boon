@@ -35,17 +35,19 @@
                     {{dateToStr .}}
                   </th>
                   {{/each}}
+                  <td></td>
                 </tr>
               </thead>
               <tbody>
                 {{#each comments}}
                 <tr>
-                  <th><a href="{{pathFor 'comment'}}">{{nickname}}</a></th>
+                  <th>{{nickname}}</th>
                   {{#each selectDates}}
                   <td class="text-center {{statusState status}}">
                     <span class="glyphicon {{statusIcon status}} {{statusText status}}"></span>
                   </td>
                   {{/each}}
+                  <td class="text-center text-danger"><span class="tap"><span class="glyphicon glyphicon-trash"></span></span></td>
                 </tr>
                 {{/each}}
               </tbody>
