@@ -263,6 +263,15 @@ var ShowController = RouteController.extend({
                 $('#inputUserSchedulePassword').val('');
             });
 
+            $('#deleteCommentModal').on('show.bs.modal', function(e) {
+                Session.set('deleteComment', $(e.relatedTarget).data('id'))
+            });
+
+            $('#deleteCommentModal').on('hidden.bs.modal', function(e) {
+                Session.set('deleteCommentPasswordError', false);
+                $('#deleteCommentPassword').val('');
+            });
+
         }, 500);
     },
 
@@ -349,6 +358,21 @@ Template['show'].events({
         } else {
             Session.set('deletePassword', true);
         }
+    },
+
+    'click #deleteComment': function() {
+        var $deleteCommentPassword = $('#deleteCommentPassword');
+
+        var _id: string = Session.get('deleteComment');
+        var _password: any = CommentsCollection.findOne(_id).commentPassword;
+
+        if(_.isEqual(_password, $deleteCommentPassword.val())) {
+            $('#deleteCommentModal').modal('hide').on('hidden.bs.modal', function(e) {
+                CommentsCollection.remove(_id);
+            });
+        } else {
+            Session.set('deleteCommentPasswordError', true);
+        }
     }
 
 });
@@ -423,6 +447,10 @@ Template['show']['statusText'] = function(status) {
     return Util.StatusCreator.statusToBootstrapTextStatus(status);
 }
 
+Template['deleteComment']['deleteCommentPasswordError'] = function() {
+    return Session.get('deleteCommentPasswordError');
+}
+
 Template['new'].events({
 
     'click #postEntry' : function(e) {
@@ -461,15 +489,3 @@ Template['new'].events({
     }
 
 });
-
-Template['comment']['statusState'] = function(status) {
-    return Util.StatusCreator.statusToBootstrapStatus(status);
-}
-
-Template['comment']['statusIcon'] = function(status) {
-    return Util.StatusCreator.statusToBootstrapStatusIcon(status);
-}
-
-Template['comment']['statusText'] = function(status) {
-    return Util.StatusCreator.statusToBootstrapTextStatus(status);
-}

@@ -25,41 +25,47 @@
           <h3 class="panel-title">みんなの予定</h3>
         </div>
         <div class="panel-body">
-          <div class="spacing">
-            <table class="table spacing">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  {{#each boon.selectDates}}
-                  <th class="text-center">
-                    {{dateToStr .}}
-                  </th>
-                  {{/each}}
-                  <td></td>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each comments}}
-                <tr>
-                  <th>{{nickname}}</th>
-                  {{#each selectDates}}
-                  <td class="text-center {{statusState status}}">
-                    <span class="glyphicon {{statusIcon status}} {{statusText status}}"></span>
-                  </td>
-                  {{/each}}
-                  <td class="text-center text-danger"><span class="tap"><span class="glyphicon glyphicon-trash"></span></span></td>
-                </tr>
-                {{/each}}
-              </tbody>
-            </table>
+          <div class="list-group">
+          {{#each comments}}
+            <div href="#" class="list-group-item">
+              <h4 class="list-group-item-heading">{{nickname}}</h4>
+              <p class="list-group-item-text">{{comment}}</p>
+            </div>
+          {{/each}}
           </div>
-
+          {{> addSchedule}}
+        </div>
+        <table class="table spacing">
+          <thead>
+            <tr>
+              <th>Name</th>
+              {{#each boon.selectDates}}
+              <th class="text-center">
+                {{dateToStr .}}
+              </th>
+              {{/each}}
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each comments}}
+            <tr>
+              <th>{{nickname}}</th>
+              {{#each selectDates}}
+              <td class="text-center {{statusState status}}">
+                <span class="glyphicon {{statusIcon status}} {{statusText status}}"></span>
+              </td>
+              {{/each}}
+              <td class="text-center text-danger"><span class="tap" data-id="{{_id}}" data-toggle="modal" data-target="#deleteCommentModal"><span class="glyphicon glyphicon-trash"></span></span></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{> deleteComment}}
+        <div class="panel-footer">
           <div class="text-right">
             <button class="btn btn-primary" data-toggle="modal" data-target="#addScheduleModal"><span class="glyphicon glyphicon-plus"></span> 予定を登録する</button>
           </div>
-
-          {{> addSchedule}}
-
         </div>
       </div>
     </div>
@@ -74,38 +80,11 @@
             <input type="text" class="form-control" value="{{thisUrl}}" id="copyTargetUrl" readonly="readonly">
           </div>
 
-          <p class="text-danger tap">
+          <span class="text-danger tap">
             <span class="glyphicon glyphicon-remove"></span>
             <span data-id="{{boon._id}}" data-toggle="modal" data-target="#deleteModal">このイベントを削除する</span>
-          </p>
-          <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title" id="deleteModalLabel">このイベントを削除します</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group{{#if deletePasswordError}} has-warning{{/if}}">
-                    <div class="row">
-                      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                      <div class="col-lg-10">
-                        <input type="password" class="form-control spacing" id="deletePassword" placeholder="Password">
-                        {{#if deletePasswordError}}
-                        <p class="text-warning" id="inputPasswordIsRequired">正しいパスワードをいれるんだブーン</p>
-                        {{/if}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteCancel">Close</button>
-                  <button type="button" class="btn btn-danger" id="deleteBoon" data-id="{{boon._id}}" data-comments="{{#each comments}}{{_id}},{{/each}}">Delete</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
+          </span>
+          {{> deleteBoon}}
         </div>
       </div>
     </div>

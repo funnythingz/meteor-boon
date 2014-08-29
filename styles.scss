@@ -9,3 +9,16 @@ body {
 .tap {
   cursor: pointer;
 }
+
+.hero {
+  background: url(/assets/hero.jpg) no-repeat 0 0;
+
+  h1 {
+    color: #e1e2e3;
+  }
+
+  .lead {
+    color: #e1e2e3;
+  }
+
+}
