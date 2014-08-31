@@ -76,10 +76,7 @@
           <h3 class="panel-title">下記のURLをみんなで共有して予定を調整しちゃおっ(・ω&lt;)</h3>
         </div>
         <div class="panel-body">
-          <div class="form-group spacing">
-            <input type="text" class="form-control" value="{{thisUrl}}" id="copyTargetUrl" readonly="readonly">
-          </div>
-
+          <p class="spacing"><a href="{{thisUrl}}">{{thisUrl}}</a></p>
           <span class="text-danger tap">
             <span class="glyphicon glyphicon-remove"></span>
             <span data-id="{{boon._id}}" data-toggle="modal" data-target="#deleteModal">このイベントを削除する</span>
