@@ -95,19 +95,6 @@ module Util {
 
     }
 
-    export function statusToBootstrapStatus(status) {
-
-        switch(status) {
-            case 'ok':
-                return 'success';
-            case 'ng':
-                return 'danger';
-            case 'pending':
-                return 'warning';
-        }
-
-    }
-
     export class DatePickerApp {
 
         $dpCalendar = $('#dp-calendar');
@@ -244,8 +231,6 @@ var ShowController = RouteController.extend({
                 Session.set('inputNickName', false);
                 Session.set('inputUserSchedulePassword', false);
 
-                // TODO: statusの選択肢もクリアする
-                //$('.selectStatus')
                 $('#inputNickName').val('');
                 $('#inputUserComment').val('');
                 $('#inputUserSchedulePassword').val('');
