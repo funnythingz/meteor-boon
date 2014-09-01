@@ -16,6 +16,7 @@ or
 % meteor add orefalo:typescript-compiler
 % meteor add handlebars
 % meteor add underscore
+% meteor add mizzao:bootstrap-3
 ```
 
 ## run
