@@ -191,6 +191,8 @@ module ViewModel {
 
 }
 
+Router.onBeforeAction('dataNotFound');
+
 Router.configure({
     layoutTemplate: 'layout',
     notFoundTemplate: 'notFound',
@@ -227,6 +229,7 @@ var NewController = RouteController.extend({
 });
 
 var AdminController = RouteController.extend({
+
     template: 'admin',
 
     data: function() {
@@ -235,14 +238,8 @@ var AdminController = RouteController.extend({
 });
 
 var ShowController = RouteController.extend({
+
     template: 'show',
-    onBeforeAction: function() {
-        setTimeout(()=> {
-            if(_.isUndefined(BoonsCollection.findOne(this.params._id))) {
-                Router.go('home');
-            }
-        }, 500);
-    },
 
     onAfterAction: function() {
         setTimeout(function() {
@@ -279,6 +276,10 @@ var ShowController = RouteController.extend({
 
         var boon: any = BoonsCollection.findOne(this.params._id);
         var comments: any = CommentsCollection.find({boonId: this.params._id}, {sort: {createAt: -1}});
+
+        if(_.isUndefined(boon)) {
+            return;
+        }
 
         return {
             thisUrl: location.href,
