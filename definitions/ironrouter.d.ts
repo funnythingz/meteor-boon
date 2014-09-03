@@ -83,7 +83,7 @@ declare module Router {
     export function onData(hook?: string, func?: Function, params?: any): void;
     export function waitOn(hook?: string, func?: Function, params?: any): void;
 
-    export var routes: Array<any>;
+    export var routes: Object;
     export var params: any;
 
 }
