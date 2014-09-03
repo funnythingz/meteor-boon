@@ -14,9 +14,12 @@ declare module Router {
     interface TemplateConfigDico {[id:string]:TemplateConfig}
 
     interface GlobalConfig {
+        load?: Function;
+        autoRender?: boolean;
         layoutTemplate?: string;
         notFoundTemplate?: string;
         loadingTemplate?: string;
+        waitOn?: any;
     }
 
     interface MapConfig {
@@ -50,35 +53,39 @@ declare module Router {
     interface HookOptionsDico {[id:string]:HookOptions}
 
     // Deprecated:  for old "Router" smart package
-    function page():void;
-    function add(route:Object):void;
-    function to(path:string, ...args:any[]):void;
-    function filters(filtersMap:Object);
-    function filter(filterName:string, options?:Object);
+    export function page():void;
+    export function add(route:Object):void;
+    export function to(path:string, ...args:any[]):void;
+    export function filters(filtersMap:Object);
+    export function filter(filterName:string, options?:Object);
 
     // These are for Iron-Router
-    function configure(config:GlobalConfig);
-    function map(func:Function):void;
-    function route(name:string, routeParams?:MapConfig, handler?:any);
-    function path(route:string, params?:Object):string;
-    function url(route:string):string;
-    function go(route:string, params?:Object):void;
-    function before(func: Function, options?: HookOptionsDico): void;
-    function after(func: Function, options?: HookOptionsDico): void;
-    function load(func: Function, options?: HookOptionsDico): void;
-    function unload(func: Function, options?: HookOptionsDico): void;
-    function render(template?: string, options?: TemplateConfigDico): void;
-    function wait(): void;
-    function stop(): void;
-    function redirect(): void;
+    export function configure(config:GlobalConfig);
+    export function map(func:Function):void;
+    export function route(name:string, routeParams?:MapConfig, handler?:any);
+    export function path(route:string, params?:Object):string;
+    export function url(route:string):string;
+    export function go(route:string, params?:Object):void;
+    export function before(func: Function, options?: HookOptionsDico): void;
+    export function after(func: Function, options?: HookOptionsDico): void;
+    export function load(func: Function, options?: HookOptionsDico): void;
+    export function unload(func: Function, options?: HookOptionsDico): void;
+    export function render(template?: string, options?: TemplateConfigDico): void;
+    export function wait(): void;
+    export function stop(): void;
+    export function redirect(): void;
+    export function current(): any;
 
-    function onRun(func?: Function, params?: any): void;
-    function onBeforeAction(hook?: string, func?: Function, params?: any): void;
-    function onAfterAction(func?: Function, params?: any): void;
-    function onStop(func?: Function, params?: any): void;
+    export function onRun(hook?: string, func?: Function, params?: any): void;
+    export function onBeforeAction(hook?: string, func?: Function, params?: any): void;
+    export function onAfterAction(hook?: string, func?: Function, params?: any): void;
+    export function onStop(hook?: string, func?: Function, params?: any): void;
+    export function onData(hook?: string, func?: Function, params?: any): void;
+    export function waitOn(hook?: string, func?: Function, params?: any): void;
 
-    var routes: {};
-    var params: any;
+    export var routes: Array<any>;
+    export var params: any;
+
 }
 
 interface RouteController {
