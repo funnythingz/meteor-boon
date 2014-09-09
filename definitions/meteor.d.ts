@@ -541,3 +541,38 @@ declare var Accounts: Meteor.Accounts;
 declare var Match: Meteor.Match;
 declare var EJSON: Meteor.EJSON;
 declare var Tinytest: Meteor.Tinytest;
+
+declare module Mongo {
+
+	interface Collection<T> {
+		find(selector?, options?: {
+					sort?: any;
+					skip?: Number;
+					limit?: Number;
+					fields?: Meteor.CollectionFieldSpecifier;
+					reactive?: Boolean;
+					transform?: Function;
+				}); 
+		findOne(selector?, options?: {
+					sort?: any;
+					skip?: Number;
+					fields?: Meteor.CollectionFieldSpecifier;
+					reactive?: Boolean;
+					transform?: Function;
+				}); 
+		insert(doc: Object, callback?: Function); 
+		update(selector: any, modifier: any, options?: {
+					multi?: Boolean;
+					upsert?: Boolean;
+				}, callback?: Function): number;
+		upsert(selector: any, modifier: any, options?: {
+					multi?: Boolean;
+				}, callback?: Function): {numberAffected?: number; insertedId?: string;};
+		remove(selector: any, callback?: Function): void;
+		allow(options: Meteor.AllowDenyOptions): boolean;
+		deny(options: Meteor.AllowDenyOptions): boolean;
+		ObjectID(hexString: string): Object;
+    }
+
+    export function Collection<T>(name:string, options?:Meteor.CollectionOptions) : void;
+}
