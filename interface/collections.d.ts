@@ -12,7 +12,7 @@ interface IBoonsCollection {
     createAt: number;
 }
 
-declare var BoonsCollection: Meteor.Collection<IBoonsCollection>;
+declare var BoonsCollection: Mongo.Collection<IBoonsCollection>;
 
 
 interface ICommentsCollection {
@@ -25,4 +25,4 @@ interface ICommentsCollection {
     createAt: number;
 }
 
-declare var CommentsCollection: Meteor.Collection<ICommentsCollection>;
+declare var CommentsCollection: Mongo.Collection<ICommentsCollection>;
