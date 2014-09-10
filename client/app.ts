@@ -303,14 +303,14 @@ Template['show'].events({
         var $deletePassword = $('#deletePassword');
 
         var _id = $deleteBoon.data('id');
-        var _password: any = BoonsCollection.findOne(_id).eventPassword;
+        var _password: any = BoonsCollection.findOne(_id);
 
         var _comments: Array<string> = [];
         if(!_.isUndefined($deleteBoon.data('comments'))) {
             _.compact($deleteBoon.data('comments').split(","));
         }
 
-        if(_.isEqual(_password, $deletePassword.val())) {
+        if(_.isEqual(_password.eventPassword, $deletePassword.val())) {
             $('#deleteModal').modal('hide').on('hidden.bs.modal', function(e) {
 
                 BoonsCollection.remove(_id);
@@ -330,9 +330,9 @@ Template['show'].events({
         var $deleteCommentPassword = $('#deleteCommentPassword');
 
         var _id: string = Session.get('deleteComment');
-        var _password: any = CommentsCollection.findOne(_id).commentPassword;
+        var _password: any = CommentsCollection.findOne(_id);
 
-        if(_.isEqual(_password, $deleteCommentPassword.val())) {
+        if(_.isEqual(_password.commentPassword, $deleteCommentPassword.val())) {
             $('#deleteCommentModal').modal('hide').on('hidden.bs.modal', function(e) {
                 CommentsCollection.remove(_id);
             });
