@@ -1,6 +1,6 @@
 # meteor-boon
 
-Meteor `~v0.9.0`
+Meteor `~v0.9.1`
 
 ## setup
 
