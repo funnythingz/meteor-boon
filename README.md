@@ -1,6 +1,6 @@
 # meteor-boon
 
-Meteor `~v0.9.2`
+Meteor `~v1.0.0`
 
 ## setup
 
@@ -15,7 +15,6 @@ or
 % meteor add fourseven:scss
 % meteor add orefalo:typescript-compiler
 % meteor add handlebars
-% meteor add underscore
 % meteor add mizzao:bootstrap-3
 ```
 
