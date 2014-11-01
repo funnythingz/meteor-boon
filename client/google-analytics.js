@@ -6,4 +6,6 @@ Router.onRun(function() {
 
     ga('create', 'UA-1882060-20', 'auto');
     ga('send', 'pageview');
+
+    this.next();
 });
